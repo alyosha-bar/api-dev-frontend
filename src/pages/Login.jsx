@@ -1,10 +1,6 @@
-// checklist for login component
-// 1. make a form and send request to the server -  DONE
-// 2. hook up to a user context system
-
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from '../contexts/UserContext'
 
 const Login = () => {
 
@@ -13,7 +9,7 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const {user, putUser} = useContext(UserContext)
+    const {user, putUser, logout} = useContext(UserContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -35,6 +31,8 @@ const Login = () => {
             return res.json()
         }).then ( (data) => {
             putUser(data)
+            console.log(user)
+            navigate('/')
         })
         .catch((err) => {
             console.error('Error:', err); // Log network or server errors

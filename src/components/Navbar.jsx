@@ -1,18 +1,19 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 const Navbar = () => {
 
     const navigate = useNavigate()
 
-    // const logOut = () => {
-    //     logout()
-    //     // delete cookie
-    //     cookies.remove('Authorization')
-    //     navigate('/login')
-    // }
+    const logOut = () => {
+        putUser(null)
+        // delete cookie
+        // cookies.remove('Authorization')
+        navigate('/login')
+    }
 
-    const user = "smth";
+    const {user, putUser} = useContext(UserContext);
 
     return ( 
         <nav className='navbar'>
@@ -21,7 +22,7 @@ const Navbar = () => {
                 <div className='links'> 
                     <Link to='/'> Home </Link>
                     {/* <Link to='/dashboard'> Dashboard </Link> */}
-                    <button className="logout" > Log Out </button>
+                    <button className="logout" onClick={logOut}> Log Out </button>
                 </div>
              : <div className="links">
                     <Link to='/login'> Login </Link>
