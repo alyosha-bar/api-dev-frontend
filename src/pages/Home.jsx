@@ -5,6 +5,7 @@ import { UserContext} from '../contexts/UserContext'
 const Home = () => {
 
     const [apis, setApis] = useState([])
+    const [loading, setLoading] = useState()
 
     const {user, putUser} = useContext(UserContext)
 
@@ -20,12 +21,16 @@ const Home = () => {
                 .catch( (err) => {
                 console.log(err)
                 })
-        } else {
-            navigate('/login')
         }
 
         // setApis(testData)
-    }, [])
+    }, [user])
+
+    useEffect(() => {
+        if (!user) {
+            navigate('/')
+        }
+    }, [user])
 
 
     const navigate = useNavigate()
@@ -42,10 +47,12 @@ const Home = () => {
 
     }
 
-    return ( 
-        <div className="bg-white p-10">
-            <h1 className="text-black text-5xl"> Home Page! </h1>
-            <div className="grid gap-5 p-2 mt-4 w-[70vw] grid-cols-[repeat(auto-fit,_minmax(350px,_1fr))] api-cards">
+    return (
+        <div className="bg-white">
+        <h1 className="text-black text-5xl p-10 text-bold"> Registered APIs </h1>
+        <div className="bg-white p-10 h-full flex justify-center align-center">
+            <div className="grid gap-12 p-2 mt-4 w-[90vw] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+
             {apis &&
                 apis.map((api) => (
                 <div
@@ -67,6 +74,7 @@ const Home = () => {
                 +
             </button>
             </div>
+        </div>
         </div>
      );
 }

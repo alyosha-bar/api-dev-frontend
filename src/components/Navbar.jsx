@@ -7,11 +7,11 @@ const Navbar = () => {
     const navigate = useNavigate()
 
     const logOut = () => {
-        putUser(null)
+        logout()
         navigate('/login')
     }
 
-    const {user, putUser} = useContext(UserContext);
+    const {user, putUser, logout} = useContext(UserContext);
 
     return ( 
         <nav className='bg-white border-b border-gray-200 py-4 px-6'>
