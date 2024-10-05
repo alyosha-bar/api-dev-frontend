@@ -1,21 +1,28 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext} from '../contexts/UserContext'
 
 const Home = () => {
 
     const [apis, setApis] = useState([])
 
+    const {user, putUser} = useContext(UserContext)
+
     useEffect( () => {
 
-        fetch('/api/home')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            setApis(data)
-        })
-        .catch( (err) => {
-        console.log(err)
-        })
+        if (user) {
+            fetch('/api/home')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    setApis(data)
+                })
+                .catch( (err) => {
+                console.log(err)
+                })
+        } else {
+            navigate('/login')
+        }
 
         // setApis(testData)
     }, [])
@@ -36,24 +43,30 @@ const Home = () => {
     }
 
     return ( 
-        <div className="page">
-            <h1> Home Page! </h1>
-            {/* <h3> Here we will have: </h3>
-            <ul>
-                <li> All APIs currently registered</li>
-                <li> Button to register new API</li>
-            </ul> */}
-             <div className="api-cards">
-            {apis && apis.map( (api) => (
-                <div className="card" onClick={() => {goToDash(api.id)}}>
-                    <h3> {api.title} </h3>
-                    <p> {api.description}</p>
-                    <p> used in project name </p>
+        <div className="bg-white p-10">
+            <h1 className="text-black text-5xl"> Home Page! </h1>
+            <div className="grid gap-5 p-2 mt-4 w-[70vw] grid-cols-[repeat(auto-fit,_minmax(350px,_1fr))] api-cards">
+            {apis &&
+                apis.map((api) => (
+                <div
+                    className="bg-indigo-300 min-h-16 w-[350px] p-6 rounded-lg transition-transform duration-100 ease-in-out card hover:scale-105 cursor-pointer"
+                    onClick={() => {
+                    goToDash(api.id);
+                    }}
+                    key={api.id}
+                >
+                    <h3 className="text-xl font-bold mb-2">{api.title}</h3>
+                    <p className="text-gray-700">{api.description}</p>
+                    <p className="text-gray-500">Used in project name</p>
                 </div>
-            ))}
-            <button className="add" onClick={startFlow}> + </button>
+                ))}
+            <button
+                className="w-[350px] min-h-16 text-black bg-white border border-black text-6xl rounded-lg transition-all duration-100 ease-in add hover:text-indigo-500 hover:border-indigo-500 hover:text-7xl focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-500"
+                onClick={startFlow}
+            >
+                +
+            </button>
             </div>
-
         </div>
      );
 }

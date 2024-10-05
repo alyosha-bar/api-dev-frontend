@@ -1,5 +1,4 @@
-/* general */
-.page {
+/* .page {
   padding: 100px;
   width: 100vw;
   display: flex;
@@ -9,8 +8,6 @@
   overflow-x: hidden;
 }
 
-
-/* navbar */
 
 .navbar {
   height: 10vh;
@@ -57,16 +54,16 @@
 .logout:hover {
   cursor: pointer;
   background-color: #243c55;
-  /* color: #e7e6e6; */
+  color: #e7e6e6;
   border-radius: 5px;
 }
 
-/* api cards */
+api cards
 
 .api-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 20px; /* Optional: adds spacing between grid items */
+  gap: 20px; 
   padding: 10px;
   width: 70vw;
   margin-top: 15px;
@@ -91,7 +88,7 @@
   border: 1px solid black;
   font-size: 3rem;
   border-radius: 10px;
-  transition: font-size 0.1s ease-in; /* Smooth transition */
+  transition: font-size 0.1s ease-in; 
 }
 
 .add:hover {
@@ -108,7 +105,7 @@
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* login form */
+login form
 .login-page {
   display: flex;
   justify-content: center;
@@ -180,4 +177,4 @@
   cursor: pointer;
     background-color: #317536;
     color: #e7e6e6;
-}
+} */
