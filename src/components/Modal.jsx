@@ -14,7 +14,7 @@ const Modal = ({isOpen, closeModal, children, index}) => {
             // pass into children the component i want?
             return (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-4/5">
+                    <div className="bg-white rounded-lg shadow-lg p-6 w-3/5 ">
                         <div className="modal-content">
                             <First />
                             {children}

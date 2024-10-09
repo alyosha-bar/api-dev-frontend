@@ -10,7 +10,7 @@ const First = () => {
     const scriptTag = `<script src="https://MY-SERVER-URL/?userId=<YOUR TOKEN>api=<YOUR API NAME KEY><script>`
 
     return ( 
-        <div className="text-sm max-h-96 overflow-auto">
+        <div className="text-sm overflow-auto h-4/5">
             <h2 className="text-xl font-bold text-black"> Welcome! </h2>
             <h2 className="text-black p-2 text-lg"> Step 1 </h2>
             <p className="text-black p-2 text-lg"> Paste this script tag into the head of html documentation like so: </p>
