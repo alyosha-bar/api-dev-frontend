@@ -11,10 +11,13 @@ const Home = () => {
 
     const {user, putUser} = useContext(UserContext)
 
+    const navigate = useNavigate()
+
     useEffect( () => {
 
         if (user) {
-            fetch(`/api/home/${user.id}`)
+            // fetch(`/api/home/${user.uid}`)
+            fetch(`/api/home/AilUMtKUf4YeQK5z8vTPnrB95td2`)
             .then((response) => {
                 if (!response.ok) {
                     // If the response status is not OK (e.g., 404 or 500), throw an error
@@ -34,9 +37,7 @@ const Home = () => {
             .catch((err) => {
                 // Optionally handle other unexpected errors (network issues, etc.)
                 console.log(err.message); // Log error to console for debugging
-            });
-
-        
+            });        
         }
 
         // setApis(testData)
@@ -44,12 +45,11 @@ const Home = () => {
 
     useEffect(() => {
         if (!user) {
-            navigate('/')
+            console.log("bruh bruh")
+            navigate('/login')
         }
-    }, [])
+    }, [user])
 
-
-    const navigate = useNavigate()
 
     const goToDash = (id) => {
         navigate(`/dashboard/${id}`) //replace with actual id
@@ -59,33 +59,10 @@ const Home = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    const slides = [
-        { 
-            title: "Welcome", 
-            content: "This is the first slide" 
-        },
-        { 
-            title: "Step 1", 
-            content: "This is the second slide" 
-        },
-        { 
-            title: "Step 2", 
-            content: "This is the third slide"
-        },
-        { 
-            title: "Finish", 
-            content: "You have completed all the steps!"
-        },
-    ];
-
 
     const nextSlide = () => {
-        if (currentSlide < slides.length - 1) {
-            console.log("Slide: " + currentSlide)
-            var newSlide = currentSlide + 1;
-            console.log("New Slide: " + newSlide)
-            setCurrentSlide(newSlide);
-            console.log("Yo: " + currentSlide)
+        if (currentSlide < 3) {
+            setCurrentSlide(currentSlide + 1);
         } else {
             console.log(currentSlide)
             setIsModalOpen(false); // Close modal after last slide
@@ -138,9 +115,7 @@ const Home = () => {
                 <button
                     className="w-[350px] p-10 min-h-40 text-black bg-white border border-black text-6xl rounded-lg transition-all duration-100 ease-in add hover:text-indigo-500 hover:border-indigo-500 hover:text-7xl focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-500"
                     onClick={() => {
-                        console.log(isModalOpen)
                         setIsModalOpen(true)
-                        console.log("huh")
                     }}
                 >
                     +
@@ -167,7 +142,7 @@ const Home = () => {
                     
                     
                     <div className="flex justify-end">
-                        {currentSlide < slides.length - 1 ? (
+                        {currentSlide < 3? (
                             <button
                             className="bg-blue-500 text-white px-4 py-2 rounded-lg mx-2"
                             onClick={nextSlide}

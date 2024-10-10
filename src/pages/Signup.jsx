@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
-
+import { auth } from "../auth/firebase";
+import {createUserWithEmailAndPassword} from 'firebase/auth'
+import { UserContext } from "../contexts/UserContext";
 
 const Signup = () => {
 
@@ -10,17 +11,50 @@ const Signup = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
+    const [error, setError] = useState('')
+
     const navigate = useNavigate()
+    
+    const {user, putUser} = useContext(UserContext)
+
+    const validateCredentials = (email, confirmEmail, password, confirmPassword) => {
+      if (email != confirmEmail || password != confirmPassword) {
+        return false;
+      }
+
+      return true
+    }
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const newUser = {
-            "Email": email,
-            "Password": password
-        }
+        const valid = validateCredentials(email, confirmEmail, password, confirmPassword)
 
-        const signUp = (newUser) => {
+        if (valid) {
+          createUserWithEmailAndPassword(auth, email, password)
+          .then( (userCredential) => {
+            //signed up
+            const userF = userCredential.user
+            console.log(userF)
+            putUser(userF)
+            return userF
+          }).then( (userF) => {
+            console.log("sending request to mongodb")
+            createCol(userF)
+            console.log("returned from mongodb. redirecting ... ")
+            setTimeout(2000)
+            navigate('/')
+          }).catch( (err) => {
+            console.error(err)
+          })
+        } else {
+          setError('Invalid Credentials.')
+        }
+        
+
+
+        const createCol = (newUser) => {
             
             // validate inputs
 
@@ -29,7 +63,7 @@ const Signup = () => {
             fetch('/api/signup', {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(newUser)
+                body: JSON.stringify({"uid": newUser.uid})
             })
             .then( (res) => {
                 if (!res.ok) {
@@ -38,7 +72,6 @@ const Signup = () => {
                 return res.json()
             }).then( (data) => {
                 console.log(data)
-                navigate('/')
                 // put the user in to the Context as well
                 // later 
             }).catch( (err) => {
@@ -48,9 +81,9 @@ const Signup = () => {
 
         }
 
-        console.log("Registering")
-        signUp(newUser)
-        console.log("Registered")
+        // console.log("Registering")
+        // signUp(newUser)
+        // console.log("Registered")
     }
 
     return ( 
@@ -131,6 +164,7 @@ const Signup = () => {
                 Sign Up
               </button>
             </div>
+            {error && <div className="text-red-700 flex justify-center items-center border border-solid border-red-700 p-4 rounded-md bg-gray-100">{error}</div> }
           </form>
         </div>
       </div>

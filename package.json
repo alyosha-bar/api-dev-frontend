@@ -13,6 +13,7 @@
     "@remixicon/react": "^4.2.0",
     "@tremor/react": "^3.18.3",
     "clsx": "^2.1.1",
+    "firebase": "^10.14.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",

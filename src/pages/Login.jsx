@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from '../contexts/UserContext'
+import { auth } from "../auth/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
 
@@ -15,31 +17,16 @@ const Login = () => {
         e.preventDefault();
         console.log('Logging in...')
 
-
-        fetch('api/login/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ "Email": email, "Password": password })
-        }).then((res) => {
-            console.log(res)
-            if(!res.ok){
-                console.log('Login validating')
-                throw new Error("Invalid Login.")
-            } 
-            return res.json()
-        }).then ( (data) => {
-            putUser(data)
-            console.log(user)
-            navigate('/')
+        signInWithEmailAndPassword(auth, email, password)
+        .then( (userCredential) => {
+          const userF = userCredential.user
+          console.log(userF)
+          putUser(userF)
+          navigate('/')
+        }).catch( (err) => {
+          console.error(err)
         })
-        .catch((err) => {
-            console.error('Error:', err); // Log network or server errors
-        });
-
         
-
         setEmail('')
         setPassword('')
     }    
