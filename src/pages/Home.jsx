@@ -17,7 +17,7 @@ const Home = () => {
 
         if (user) {
             // fetch(`/api/home/${user.uid}`)
-            fetch(`/api/home/AilUMtKUf4YeQK5z8vTPnrB95td2`)
+            fetch(`/api/home/${user.uid}`)
             .then((response) => {
                 if (!response.ok) {
                     // If the response status is not OK (e.g., 404 or 500), throw an error
