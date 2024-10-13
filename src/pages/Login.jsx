@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from '../contexts/UserContext'
 import { auth } from "../auth/firebase";
@@ -12,6 +12,12 @@ const Login = () => {
     const [password, setPassword] = useState('')
 
     const {user, putUser, logout} = useContext(UserContext)
+
+    useEffect(() => {
+      if(user) {
+        navigate('/')
+      }
+    }, [user])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -31,6 +37,8 @@ const Login = () => {
         setPassword('')
     }    
     
+
+
 
     return ( 
         <div className="min-h-screen flex items-center justify-center bg-gray-100">

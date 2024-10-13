@@ -4,10 +4,25 @@ import { useState } from "react"
 const Second = () => {
 
     const [userToken, setUserToken] = useState('')
+    const [apiToken, setApiToken] = useState('')
 
 
     const generateUserToken = () => {
+        
+        // take in user uid
+
+        // transform using encryption algorithm with a version number
+        // call backend so the process is secure
+
+
+        // save to db?
+
+
         setUserToken(getRandomString())
+    }
+
+    const generateApiToken = () => {
+        setApiToken(getRandomString())
     }
 
     const getRandomString = (length = 15) => {
@@ -40,16 +55,16 @@ const Second = () => {
                 </div>
             </div>
             <div className="text-black">
-                <button onClick={generateUserToken} className="bg-gray-200 p-2"> Generate API Token </button>
+                <button onClick={generateApiToken} className="bg-gray-200 p-2"> Generate API Token </button>
                 <div className="flex justify-between">
-                    <p className="text-white bg-black p-4 w-4/5"> { userToken }</p>
+                    <p className="text-white bg-black p-4 w-4/5"> { apiToken }</p>
                     <button onClick={() => {copyToken(userToken)}} className="bg-blue-500 text-white p-4"> Copy </button>
                 </div>
             </div>
 
             <p className="text-black text-lg p-2"> Save the user token and the api token in your application's ENV variables</p>
             <div className="flex justify-center items-center my-6">
-                <p className="text-red-700 w-3/5 flex justify-center items-center border border-solid border-red-700 p-2 rounded-md bg-gray-100"> KEEP THESE TOKEN SECRET. IF THEY ARE REVEALED REGENERATE THEM IN YOUR API DASHBOARD.</p>
+                <p className="text-red-700 w-3/5 flex justify-center items-center border border-solid border-red-700 p-2 rounded-md bg-gray-100"> KEEP THESE TOKENS SECRET. IF THEY ARE REVEALED REGENERATE: <br /> (1) THE USER TOKEN IN YOUR USER DASHBOARD. <br /> (2) THE API TOKEN IN YOUR API DASHBOARD.</p>
             </div>
 
         </div>
