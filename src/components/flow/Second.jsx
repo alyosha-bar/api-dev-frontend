@@ -13,7 +13,16 @@ const Second = () => {
 
         // transform using encryption algorithm with a version number
         // call backend so the process is secure
-
+        fetch('/api/generate')
+        .then((res) => {
+            if (res.ok) {
+                return res.json()
+            }
+        }).then( (data) => {
+            setUserToken(data.token)
+        }).catch( (err) => {
+            console.error(err)
+        })
 
         // save to db?
 
