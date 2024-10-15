@@ -1,10 +1,12 @@
-import { useState } from "react"
-
+import { useContext, useState } from "react"
+import {UserContext} from '../../contexts/UserContext'
 
 const Second = () => {
 
     const [userToken, setUserToken] = useState('')
     const [apiToken, setApiToken] = useState('')
+
+    const {user} = useContext(UserContext)
 
 
     const generateUserToken = () => {
@@ -13,7 +15,13 @@ const Second = () => {
 
         // transform using encryption algorithm with a version number
         // call backend so the process is secure
-        fetch('/api/generate')
+        fetch('/api/generate', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                uid: user.uid
+            })
+        })
         .then((res) => {
             if (res.ok) {
                 return res.json()
@@ -27,7 +35,7 @@ const Second = () => {
         // save to db?
 
 
-        setUserToken(getRandomString())
+        // setUserToken(getRandomString())
     }
 
     const generateApiToken = () => {
@@ -59,7 +67,7 @@ const Second = () => {
             <div className="text-black">
                 <button onClick={generateUserToken} className="bg-gray-200 p-2"> Generate User Token </button>
                 <div className="flex justify-between">
-                    <p className="text-white bg-black p-4 w-4/5"> { userToken }</p>
+                    <p className="text-white bg-black p-4 w-4/5 break-words whitespace-normal"> { userToken }</p>
                     <button onClick={() => {copyToken(userToken)}} className="bg-blue-500 text-white p-4"> Copy </button>
                 </div>
             </div>

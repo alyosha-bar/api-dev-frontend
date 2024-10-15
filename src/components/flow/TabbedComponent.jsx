@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const TabbedComponent = ({example}) => {
+const TabbedComponent = ({exampleReact, exampleVue, exampleSvelte}) => {
   // State to track the active tab
   const [activeTab, setActiveTab] = useState('React');
 
@@ -8,11 +8,11 @@ const TabbedComponent = ({example}) => {
   const renderTabContent = () => {
     switch (activeTab) {
       case 'React':
-        return <div className='text-black'> {example} </div>;
+        return <div className=''> {exampleReact} </div>;
       case 'Vue':
-        return <div className='text-black'> {example} </div>;
+        return <div className=''> {exampleVue} </div>;
       case 'Svelte':
-        return <div className='text-black'> {example} </div>;
+        return <div className=''> {exampleSvelte} </div>;
       default:
         return null;
     }

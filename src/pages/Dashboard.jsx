@@ -24,6 +24,7 @@ const Dashboard = () => {
                     <li className="text-black p-2 my-4 w-2/3"> <Link className="border border-solid border-black p-4"> Weather API </Link> </li>
                     <li className="text-black p-2 my-4 w-2/3"> <Link className="border border-solid border-black p-4"> Surfing API </Link> </li>
                     <li className="text-black p-2 my-4 w-2/3"> <Link className="border border-solid border-black p-4"> Youtube API </Link> </li>
+                    <li className="text-black p-2 my-4 w-2/3"> <button onClick={() => {alert("Modal to regenerate API token")}} className="border border-solid border-black p-4"> Manage API Token </button> </li>
                 </ul>
             </nav>
 
