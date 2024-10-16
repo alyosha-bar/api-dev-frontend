@@ -24,13 +24,13 @@ const Navbar = () => {
             {user ? (
               <div className='flex items-center space-x-4'>
                 <Link
-                  to='/'
+                  to='/home'
                   className='text-gray-600 hover:text-blue-500 font-medium'
                 >
                   Home
                 </Link>
                 {/* Uncomment the Dashboard link if needed */}
-                <Link to='/account' className='text-gray-600 hover:text-blue-500 font-medium'>
+                <Link to={`/account/${user.uid}`} className='text-gray-600 hover:text-blue-500 font-medium'>
                   Account
                 </Link>
                 <button

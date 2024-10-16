@@ -11,7 +11,15 @@ const First = () => {
         e.preventDefault()
 
         // pass token to the slide 2 (next slide)
-
+        fetch('/api/generateApiInfo', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                name: apiName,
+                description: description,
+                limit: limit
+            })
+        })
 
         // put into the APIs doc for the USER --> apiname, description, limit
 
@@ -43,7 +51,7 @@ const First = () => {
                     />
                 </div>
                 <div className="label-group p-4 w-4/5 flex items-center justify-between">
-                    <label className="" htmlFor="limit"> Limit: </label>
+                    <label className="" htmlFor="limit"> Monthly Limit: </label>
                     <input 
                         className=" w-4/6"
                         type="number"

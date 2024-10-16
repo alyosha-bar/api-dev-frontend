@@ -7,6 +7,8 @@ import Signup from './pages/Signup'
 import Login from './pages/Login'
 
 import Navbar from './components/Navbar'
+import Account from './pages/Account'
+import HomePage from './pages/HomePage'
 
 
 
@@ -19,9 +21,12 @@ function App() {
 
       <Routes>
         {/* protected routes */}
-        <Route path='/' element={<Home />} />
+        <Route path='/home' element={<Home />} />
         <Route path='/dashboard/:id' element={<Dashboard />} />
+        <Route path='/account/:id' element={<Account />} />
 
+        
+        <Route path='/' element={<HomePage />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
       </Routes>
