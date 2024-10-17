@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
 
 const First = () => {
@@ -6,6 +7,8 @@ const First = () => {
     const [apiName, setAPIName] = useState('')
     const [limit, setLimit] = useState()
     const [description, setDescription] = useState('')
+
+    const {user} = useContext(UserContext)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -15,6 +18,7 @@ const First = () => {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
+                uid: user.uid,
                 name: apiName,
                 description: description,
                 limit: limit

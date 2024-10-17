@@ -15,7 +15,7 @@ const Login = () => {
 
     useEffect(() => {
       if(user) {
-        navigate('/')
+        navigate('/home')
       }
     }, [user])
 
@@ -28,7 +28,7 @@ const Login = () => {
           const userF = userCredential.user
           console.log(userF)
           putUser(userF)
-          navigate('/')
+          navigate('/home')
         }).catch( (err) => {
           console.error(err)
         })
