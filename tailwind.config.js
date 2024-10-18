@@ -11,6 +11,9 @@ export default {
       fontFamily: {
         sans: ['Geist Sans', ...defaultTheme.fontFamily.sans],
       },
+      colors: {
+        customGreen: '#C4DAD2', // You can name the color anything you like
+      },
       keyframes: {
         hide: {
           from: { opacity: "1" },

@@ -64,13 +64,13 @@ const Second = () => {
         <div className="text-black flex flex-col">
             <h2 className="text-black p-2 text-lg"> Step 1 </h2>
             <p className="text-black p-2 text-lg"> Generate a user token and an api token for your api. </p>
-            <div className="text-black">
+            {/* <div className="text-black">
                 <button onClick={generateUserToken} className="bg-gray-200 p-2"> Generate User Token </button>
                 <div className="flex justify-between">
                     <p className="text-white bg-black p-4 w-4/5 break-words whitespace-normal"> { userToken }</p>
                     <button onClick={() => {copyToken(userToken)}} className="bg-blue-500 text-white p-4"> Copy </button>
                 </div>
-            </div>
+            </div> */}
             <div className="text-black">
                 <button onClick={generateApiToken} className="bg-gray-200 p-2"> Generate API Token </button>
                 <div className="flex justify-between">

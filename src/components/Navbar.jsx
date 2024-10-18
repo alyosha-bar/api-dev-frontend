@@ -14,10 +14,10 @@ const Navbar = () => {
     const {user, putUser, logout} = useContext(UserContext);
 
     return ( 
-        <nav className='bg-white border-b border-gray-200 py-4 px-6'>
+        <nav className='bg-blue-300 border-gray-200 py-6 px-6'>
         <div className='container mx-auto flex justify-between items-center'>
           {/* Logo */}
-          <h2 className='text-2xl font-bold text-gray-800'>API-Dev</h2>
+          <h2 className='text-2xl font-bold text-gray-800'> <Link to='/'> Data-Pulse </Link></h2>
   
           {/* Navigation Links */}
           <div className='space-x-6 flex items-center'>
@@ -25,12 +25,12 @@ const Navbar = () => {
               <div className='flex items-center space-x-4'>
                 <Link
                   to='/home'
-                  className='text-gray-600 hover:text-blue-500 font-medium'
+                  className='text-black hover:text-blue-500 font-medium'
                 >
                   Home
                 </Link>
                 {/* Uncomment the Dashboard link if needed */}
-                <Link to={`/account/${user.uid}`} className='text-gray-600 hover:text-blue-500 font-medium'>
+                <Link to={`/account/${user.uid}`} className='text-black hover:text-blue-500 font-medium'>
                   Account
                 </Link>
                 <button
@@ -44,7 +44,7 @@ const Navbar = () => {
               <div className='flex items-center space-x-4'>
                 <Link
                   to='/login'
-                  className='text-gray-600 hover:text-blue-500 font-medium'
+                  className='text-black hover:text-blue-500 font-medium'
                 >
                   Login
                 </Link>
