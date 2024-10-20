@@ -47,7 +47,7 @@ const Account = () => {
             <h2 className="text-black text-xl">Account info for {user.uid}</h2>
             <ul >
                 <li className="text-black">Dashboard of all API usage</li>
-                <li className="text-black">Pricing</li>
+                <li className="text-black">Pricing - which plan they are on?</li>
                 <li className="text-black">Allow to regenerate user token</li>
                 <li className="text-black">Reset Password</li>
                 <li className="text-black">Delete Account</li>
