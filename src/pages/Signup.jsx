@@ -36,12 +36,13 @@ const Signup = () => {
           .then( (userCredential) => {
             //signed up
             const userF = userCredential.user
-            console.log(userF)
+            console.log("HERE MOFO")
+            console.log("USER RIGHT HERE: " + userF)
             putUser(userF)
             return userF
           }).then( (userF) => {
             console.log("sending request to mongodb")
-            createCol(userF)
+            insertUser(userF)
             console.log("returned from mongodb. redirecting ... ")
             setTimeout(2000)
             navigate('/')
@@ -54,16 +55,19 @@ const Signup = () => {
         
 
 
-        const createCol = (newUser) => {
+        const insertUser = (newUser) => {
             
             // validate inputs
-
+            
 
             // fetch request
             fetch('/api/signup', {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({"uid": newUser.uid})
+                body: JSON.stringify({
+                  "uid": newUser.uid,
+                  "email": newUser.email,
+                })
             })
             .then( (res) => {
                 if (!res.ok) {
@@ -77,13 +81,7 @@ const Signup = () => {
             }).catch( (err) => {
                 console.error(err)
             })
-
-
         }
-
-        // console.log("Registering")
-        // signUp(newUser)
-        // console.log("Registered")
     }
 
     return ( 
