@@ -35,12 +35,12 @@ const Dashboard = () => {
                         <h3 className="text-black text-3xl p-2 self-center"> 10,820</h3>
                     </div>
                     <div className="border border-solid border-gray-200 w-1/5 flex flex-col justify-center p-4">
-                    <h5 className="text-black text-sm"> Total Requests: </h5>
-                        <h3 className="text-black text-3xl p-2 self-center"> 10,820</h3>
+                    <h5 className="text-black text-sm"> Error Rate: </h5>
+                        <h3 className="text-black text-3xl p-2 self-center"> 25% </h3>
                     </div>
                     <div className="border border-solid border-gray-200 w-1/5 flex flex-col justify-center p-4">
-                        <h5 className="text-black text-sm"> Total Requests: </h5>
-                        <h3 className="text-black text-3xl p-2 self-center"> 10,820</h3>
+                        <h5 className="text-black text-sm"> Avg Latency: </h5>
+                        <h3 className="text-black text-3xl p-2 self-center"> 247 ms </h3>
                     </div>
                 </div>
                 <div className="flex p-4 w-full justify-center items-center">
