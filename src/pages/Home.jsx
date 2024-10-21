@@ -32,7 +32,7 @@ const Home = () => {
             })
             .then((data) => {
                 console.log(data);
-                setApis(data); // Assuming setApis updates state with API response data
+                setApis(data.apis); // Assuming setApis updates state with API response data
             })
             .catch((err) => {
                 // Optionally handle other unexpected errors (network issues, etc.)
@@ -99,16 +99,16 @@ const Home = () => {
                 <div className="grid gap-12 p-2 mt-4 w-[90vw] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 
                 {apis &&
-                    apis.names.map((name, index) => (
+                    apis.map((api) => (
                     <div
                         className="bg-indigo-300 min-h-16 w-[350px] p-6 rounded-lg transition-transform duration-100 ease-in-out card hover:scale-105 cursor-pointer"
                         onClick={() => {
-                            goToDash(apis.id);
+                            goToDash(api.id);
                         }}
-                        key={index}
+                        key={api.id}
                     >
-                        <h3 className="text-xl font-bold mb-2">{name}</h3>
-                        <p className="text-gray-700">{apis.descriptions[index]}</p>
+                        <h3 className="text-xl font-bold mb-2">{api.name}</h3>
+                        <p className="text-gray-700">{api.description}</p>
                         <p className="text-gray-500"> Used in project name </p>
                     </div>
                     ))}

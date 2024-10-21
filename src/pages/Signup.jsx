@@ -10,6 +10,9 @@ const Signup = () => {
     const [confirmEmail, setConfirmEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [username, setUsername] = useState('')
+    const [firstname, setFirstname] = useState('')
+    const [lastname, setLastname] = useState('')
 
     const [error, setError] = useState('')
 
@@ -67,6 +70,8 @@ const Signup = () => {
                 body: JSON.stringify({
                   "uid": newUser.uid,
                   "email": newUser.email,
+                  "firstname": firstname,
+                  "lastname": lastname
                 })
             })
             .then( (res) => {
@@ -117,6 +122,36 @@ const Signup = () => {
                 onChange={(e) => setConfirmEmail(e.target.value)}
                 className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Re-enter your email"
+              />
+            </div>
+
+            {/* Confirm Email Input */}
+            <div className="label-group">
+              <label htmlFor="confirmEmail" className="block text-sm font-medium text-gray-600">
+                Firstname:
+              </label>
+              <input
+                type="text"
+                name="confirmEmail"
+                value={firstname}
+                onChange={(e) => setFirstname(e.target.value)}
+                className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Firstname"
+              />
+            </div>
+
+            {/* Confirm Email Input */}
+            <div className="label-group">
+              <label htmlFor="confirmEmail" className="block text-sm font-medium text-gray-600">
+                Lastname:
+              </label>
+              <input
+                type="text"
+                name="confirmEmail"
+                value={lastname}
+                onChange={(e) => setLastname(e.target.value)}
+                className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Lastname"
               />
             </div>
   

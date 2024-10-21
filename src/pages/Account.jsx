@@ -8,6 +8,9 @@ const Account = () => {
     const { user } = useContext(UserContext)
     const [userToken, setUserToken] = useState('asdawd12knasd12e')
 
+    const [accountInfo, setAccountInfo] = useState()
+
+
     const navigate = useNavigate()
 
     useEffect( () => {
@@ -15,6 +18,27 @@ const Account = () => {
             navigate('/login')
         }
     }, [user])
+
+
+    useEffect( () => {
+        // fetch /api/account/:uid
+        fetch(`/api/account/${user.uid}`, {
+            method: 'GET',
+        })
+        .then((res) => {
+            if (res.ok) {
+                return res.json()
+            }
+        }).then( (data) => {
+            // setUserToken(data.token)
+            console.log("account info: ")
+            console.log(data)
+            setAccountInfo(data[0])
+        }).catch( (err) => {
+            console.error(err)
+        })
+
+    }, [])
 
 
     const generateUserToken = () => {
@@ -64,18 +88,18 @@ const Account = () => {
                     <li className="text-black">Delete Account</li>
                 </ul> */}
 
-                <div className="p-10 px-36 w-full">
+                {accountInfo && <div className="p-10 px-36 w-full">
                     <h1 className="text-black text-2xl font-bold p-4"> Profile Details: </h1>
                     <div className="flex justify-between py-4">
-                        <div className="text-black"> Username: <i className="text-black"> Alyosha </i> </div>
-                        <div className="text-black"> Email: <i className="text-black"> alohahoy@gmail.com </i> </div>
+                        <div className="text-black"> Username: <i className="text-black"> {accountInfo.firstname} </i> </div>
+                        <div className="text-black"> Email: <i className="text-black"> {accountInfo.email} </i> </div>
                     </div>
                     <div className="flex justify-between py-4">
-                        <div className="text-black"> Firstname: <i className="text-black"> Alexey </i> </div>
-                        <div className="text-black"> Lastname: <i className="text-black"> Baryshnikov </i> </div>
+                        <div className="text-black"> Firstname: <i className="text-black"> {accountInfo.firstname} </i> </div>
+                        <div className="text-black"> Lastname: <i className="text-black"> {accountInfo.lastname}v </i> </div>
                     </div>
                     <button className="text-red-300 font-semibold p-3 border border-solid border-red-300 bg-gray-200"> Reset Password </button>
-                </div>
+                </div>}
 
                 <div className="divider border-t border-solid border-black w-4/5 p-4"></div>
 
