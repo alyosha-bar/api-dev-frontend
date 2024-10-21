@@ -2,7 +2,7 @@
 
 const Tech = () => {
     return ( 
-        <div className="p-16 flex flex-col justify-center items-center">
+        <div className="p-16 h-96 flex flex-col justify-center items-center">
             <h1 className="text-black text-3xl pb-10"> Supports <b className="text-black">Fetch API</b> and <b className="text-black">Axios</b> in: </h1>
             <ul className="tech-stack flex p-6 justify-around items-center w-3/5">
                 <li className="text-black p-3 bg-blue-400 rounded w-24 flex items-center justify-center"> React </li>
