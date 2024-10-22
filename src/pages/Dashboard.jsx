@@ -30,8 +30,8 @@ const Dashboard = () => {
 
             setLineData(monthData)
 
-            // must get latest entry
-            setTotalReq(data[0].total_req)
+            // must get latest entry --> should be the last in the data array
+            setTotalReq(data[data.length - 1].total_req)
         })
     }, [])
 
