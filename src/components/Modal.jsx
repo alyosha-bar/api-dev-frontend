@@ -16,7 +16,7 @@ const Modal = ({isOpen, closeModal, children, index}) => {
             // pass into children the component i want?
             return (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-2/5 ">
+                    <div className="bg-white rounded-lg shadow-lg p-6 w-3/5 ">
                         <div className="modal-content">
                             <First />
                             {children}
@@ -37,7 +37,7 @@ const Modal = ({isOpen, closeModal, children, index}) => {
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
                     <div className="bg-white rounded-lg shadow-lg p-6 w-2/5">
                         <div className="modal-content">
-                            <Second />
+                            <Third />
                             {children}    
                         </div>
                         <div className="modal-footer flex justify-end">
@@ -50,7 +50,7 @@ const Modal = ({isOpen, closeModal, children, index}) => {
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
                     <div className="bg-white rounded-lg shadow-lg p-6 w-2/5">
                         <div className="modal-content">
-                            <Third />
+                            <Finish />
                             {children}
                         </div>
                         <div className="modal-footer flex justify-end">
@@ -64,18 +64,18 @@ const Modal = ({isOpen, closeModal, children, index}) => {
                     </div>
                 </div>
             )
-        case 3:
-            return (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-96">
-                        <div className="modal-content">
-                            <Finish />
-                            {children}</div>
-                        <div className="modal-footer flex justify-end">
-                        </div>
-                    </div>
-                </div>
-            )
+        // case 3:
+        //     return (
+        //         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        //             <div className="bg-white rounded-lg shadow-lg p-6 w-96">
+        //                 <div className="modal-content">
+        //                     <Finish />
+        //                     {children}</div>
+        //                 <div className="modal-footer flex justify-end">
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     )
     }
 
     

@@ -9,38 +9,28 @@ const Second = () => {
     const {user} = useContext(UserContext)
 
 
-    const generateUserToken = () => {
+    const generateApiToken = () => {
         
-        // take in user uid
-
-        // transform using encryption algorithm with a version number
-        // call backend so the process is secure
-        fetch('/api/generate', {
+        // take in api-name & id from the previous slide
+        fetch(`/api/generateApiToken/${id}`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                uid: user.uid
+                name: apiName
             })
         })
         .then((res) => {
-            if (res.ok) {
-                return res.json()
+            if (!res.ok) {
+                throw new Error("Error generating the token.")
             }
+            return res.json()
         }).then( (data) => {
-            setUserToken(data.token)
+            setApiToken(data.token)
         }).catch( (err) => {
             console.error(err)
         })
-
-        // save to db?
-
-
-        // setUserToken(getRandomString())
     }
 
-    const generateApiToken = () => {
-        setApiToken(getRandomString())
-    }
 
     const getRandomString = (length = 15) => {
         alert("This will invalidate your old token. ")
@@ -62,7 +52,7 @@ const Second = () => {
 
     return ( 
         <div className="text-black flex flex-col">
-            <h2 className="text-black p-2 text-lg"> Step 1 </h2>
+            <h2 className="text-black p-2 text-lg"> Step 2 </h2>
             <p className="text-black p-2 text-lg"> Generate a user token and an api token for your api. </p>
             {/* <div className="text-black">
                 <button onClick={generateUserToken} className="bg-gray-200 p-2"> Generate User Token </button>
