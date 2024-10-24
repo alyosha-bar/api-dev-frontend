@@ -14,7 +14,7 @@ const Navbar = () => {
     const {user, putUser, logout} = useContext(UserContext);
 
     return ( 
-        <nav className='bg-blue-300 border-gray-200 py-6 px-6'>
+        <nav className='bg-blue-300 py-6 px-6'>
         <div className='container mx-auto flex justify-between items-center'>
           {/* Logo */}
           <h2 className='text-2xl font-bold text-gray-800'> <Link to='/'> API-Dev </Link></h2>

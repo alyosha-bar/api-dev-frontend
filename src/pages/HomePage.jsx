@@ -1,23 +1,27 @@
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/homepage/Footer";
 import Pricing from "../components/homepage/Pricing";
 import Tech from "../components/homepage/Tech";
 
 
 const HomePage = () => {
+
+    const navigate = useNavigate()
+
     return ( 
         <div className="">
 
             {/* Curved SVG Divider */}
 
-            <div className="hero p-36 h-full flex items-center justify-around bg-cyan-200">
+            <div className="hero p-36 flex items-center justify-around bg-cyan-200">
                 <div className="title-area w-3/5">
                     <h5 className="text-black text-xl font-sans"> Some small font description of the product. </h5>
-                    <h1 className="text-8xl font-sans"> TRACK YOUR API USAGE. </h1>
+                    <h1 className="text-8xl font-sans font-bold"> TRACK YOUR API USAGE. </h1>
                     <h3 className="text-black text-5xl mt-8"> NEVER OVERPAY. </h3>
                 </div>
                 <div className="call-to-action p-10 w-2/5 flex flex-col items-center justify-center">
                     <p className="text-black max-w-72"> API-Dev will track and analyse your 3rd party API usage and prevent you from overpaying your plan.</p>
-                    <button className="text-black text-3xl w-2/5 mt-10 p-4 bg-green-400 hover:bg-green-500 rounded-lg"> Get Started </button>
+                    <button className="text-black text-3xl w-2/5 mt-10 p-4 bg-green-400 hover:bg-green-500 rounded-lg" onClick={() => {navigate('/signup')}}> Get Started </button>
                 </div>
                 
             </div>
@@ -55,7 +59,7 @@ const HomePage = () => {
                 preserveAspectRatio="none"
                 >
                 <path
-                    fill="#C4DAD2"
+                    fill="#22C55E9A"
                     fillOpacity="1"
                     d="M0,96L48,122.7C96,149,192,203,288,192C384,181,480,107,576,80C672,53,768,75,864,90.7C960,107,1056,117,1152,106.7C1248,96,1344,64,1392,48L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
                 ></path>

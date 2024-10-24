@@ -12,7 +12,8 @@ export default {
         sans: ['Quantico', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        customGreen: '#C4DAD2', // You can name the color anything you like
+        customGreen: '#22C55E9A',
+        lightblue: '#ADD8E6',
       },
       keyframes: {
         hide: {
