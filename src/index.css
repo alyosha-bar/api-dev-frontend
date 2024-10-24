@@ -1,8 +1,12 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: white
+  /* color: white */
 }
 
 @tailwind base;
@@ -14,9 +18,15 @@ input {
 }
 
 
-@font-face {
+/* @font-face {
   font-family: 'Geist Sans';
   src: url('src/assets/fonts/GeistVariableVF.woff2') format('woff2');
   font-style: normal;
   font-weight: 100 900;
-}
+} */
+/* @font-face {
+  font-family: "Quantico", sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+  font-style: normal;
+  font-weight: 100 900;
+} */

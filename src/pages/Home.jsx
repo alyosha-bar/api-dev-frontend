@@ -109,7 +109,7 @@ const Home = () => {
                     >
                         <h3 className="text-xl font-bold mb-2">{api.name}</h3>
                         <p className="text-gray-700">{api.description}</p>
-                        <p className="text-gray-500"> Used in project name </p>
+                        <p className="text-gray-500 text-sm"> Additional Information which fills up space </p>
                     </div>
                     ))}
                 <button

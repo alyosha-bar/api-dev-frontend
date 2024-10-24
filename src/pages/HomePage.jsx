@@ -11,8 +11,8 @@ const HomePage = () => {
 
             <div className="hero p-36 h-full flex items-center justify-around bg-cyan-200">
                 <div className="title-area w-3/5">
-                    <h5 className="text-black text-xl"> Some small font description of the product. </h5>
-                    <h1 className="text-black text-8xl"> TRACK YOUR API USAGE. </h1>
+                    <h5 className="text-black text-xl font-sans"> Some small font description of the product. </h5>
+                    <h1 className="text-8xl font-sans"> TRACK YOUR API USAGE. </h1>
                     <h3 className="text-black text-5xl mt-8"> NEVER OVERPAY. </h3>
                 </div>
                 <div className="call-to-action p-10 w-2/5 flex flex-col items-center justify-center">

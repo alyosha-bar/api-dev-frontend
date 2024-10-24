@@ -8,7 +8,7 @@ const data = [
   { name: '500', value: 100 },
 ];
 
-const COLORS = ['#00C49F', '#0088FE', '#FFBB28', '#FF8042'];
+const COLORS = ['#00C49F77', '#0088FE77', '#FFBB2877', '#FF804277'];
 
 const SimplePieChart = () => {
   return (

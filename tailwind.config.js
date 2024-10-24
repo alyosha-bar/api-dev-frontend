@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Geist Sans', ...defaultTheme.fontFamily.sans],
+        sans: ['Quantico', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         customGreen: '#C4DAD2', // You can name the color anything you like

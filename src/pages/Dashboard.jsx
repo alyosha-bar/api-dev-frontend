@@ -10,6 +10,8 @@ const Dashboard = () => {
 
     const {id} = useParams()
     const [totalreq, setTotalReq] = useState()
+    const [errorRate, setErrorRate] = useState()
+    const [latestMonth, setLatestMonth] = useState()
     const [lineData, setLineData] = useState([{}])
     // fetch dashboard data for specified API ID from params
     
@@ -31,7 +33,11 @@ const Dashboard = () => {
             setLineData(monthData)
 
             // must get latest entry --> should be the last in the data array
-            setTotalReq(data[data.length - 1].total_req)
+            const latestEntry = data[data.length - 1]
+            const month = monthData[data.length - 1].month
+            setTotalReq(latestEntry.total_req)
+            setLatestMonth(month)
+            setErrorRate((latestEntry.errorcount / latestEntry.total_req) * 100)
         })
     }, [])
 
@@ -82,14 +88,14 @@ const Dashboard = () => {
             <div className="dashboard flex flex-col w-3/5 p-10">
                 <div className="flex justify-around w-5/5">
                     
-                    {totalreq && <div className="border border-solid border-gray-200 w-1/5 flex flex-col justify-center p-4">
-                        <h5 className="text-black text-sm"> Total Requests: </h5>
-                        <h3 className="text-black text-3xl p-2 self-center"> {totalreq.toLocaleString()}</h3>
+                    {totalreq && <div className="border border-solid border-green-600 w-1/5 flex flex-col justify-center p-4">
+                        <h5 className="text-green-600 text-sm"> Total Requests: </h5>
+                        <h3 className="text-green-600 text-3xl p-2 self-center"> {totalreq.toLocaleString()} <div className="text-green-600 text-sm">requests in {latestMonth} </div> </h3>
                     </div>}
-                    <div className="border border-solid border-gray-200 w-1/5 flex flex-col justify-center p-4">
-                    <h5 className="text-black text-sm"> Error Rate: </h5>
-                        <h3 className="text-black text-3xl p-2 self-center"> 25% </h3>
-                    </div>
+                    {errorRate && <div className="border border-solid border-red-600 w-1/5 flex flex-col justify-center p-4">
+                    <h5 className="text-red-600 text-sm"> Error Rate: </h5>
+                        <h3 className="text-red-600 text-3xl p-2 self-center"> {errorRate.toFixed(2)}% </h3>
+                    </div>}
                     <div className="border border-solid border-gray-200 w-1/5 flex flex-col justify-center p-4">
                         <h5 className="text-black text-sm"> Avg Latency: </h5>
                         <h3 className="text-black text-3xl p-2 self-center"> 247 ms </h3>
@@ -99,9 +105,9 @@ const Dashboard = () => {
                     <div className="text-black h-full p-10">
                         <Linechart totalreq={totalreq} data={lineData}/>
                     </div>
-                    <div className="text-black h-full p-10">
+                    {/* <div className="text-black h-full p-10">
                         <SimplePieChart />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
