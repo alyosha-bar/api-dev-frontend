@@ -31,43 +31,47 @@ const Pricing = () => {
                 price="0"
                 features={[
                   '25 APIs Registered',
-                  'Basic Analytics',
                   'Push Notifications',
+                  'Basic Analytics',
                   '',
                 ]}
                 buttonText="Start Free"
                 isPopular={true}
             />
+
             {/* Dev+ Plan */}
-        <PricingCard
-          title="Dev+ Plan"
-          price="?"
-          features={[
-            'Unlimited Projects',
-            'Advanced Analytics',
-            'Push Notifications',
-            '',
-          ]}
-          buttonText="Get Started"
-          isPopular={false} // This is the popular plan
-          comingSoon={true}
-        />
-        <div class="border-l border-black h-96 mx-4"></div>
-        {/* Team Plan */}
-        <PricingCard
-          title="Team Plan"
-          price="?"
-          features={[
-            'Unlimited Projects',
-            'Unlimited Team Members',
-            '',
-            '',
-          ]}
-          buttonText="Contact Us"
-          isPopular={false}
-          comingSoon={true}
-        />
-        </div>
+            <div class="border-l border-blue-600 h-96 mx-4"></div>
+            <PricingCard
+              title="Dev+ Plan"
+              price="?"
+              features={[
+                'Unlimited Projects',
+                'Push Notifications',
+                'Advanced Analytics',
+                'Automatic Ratelimiting',
+              ]}
+              buttonText="Get Started"
+              isPopular={false} // This is the popular plan
+              comingSoon={true}
+            />
+            
+            {/* Team Plan */}
+            <PricingCard
+              title="Team Plan"
+              price="?"
+              features={[
+                'Unlimited Projects',
+                'Push Notifications',
+                'Advanced Analytics',
+                'Unlimited Team Members',
+                '',
+                '',
+              ]}
+              buttonText="Get Started"
+              isPopular={false}
+              comingSoon={true}
+            />
+            </div>
     );
 }
     

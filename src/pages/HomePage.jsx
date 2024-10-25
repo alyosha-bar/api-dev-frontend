@@ -21,7 +21,7 @@ const HomePage = () => {
                 </div>
                 <div className="call-to-action p-10 w-2/5 flex flex-col items-center justify-center">
                     <p className="text-black max-w-72"> API-Dev will track and analyse your 3rd party API usage and prevent you from overpaying your plan.</p>
-                    <button className="text-black text-3xl w-2/5 mt-10 p-4 bg-green-400 hover:bg-green-500 rounded-lg" onClick={() => {navigate('/signup')}}> Get Started </button>
+                    <button className="bg-blue-500 text-white p-4 m-6 rounded-lg w-2/5 min-w-36 hover:bg-blue-600 transition duration-300" onClick={() => {navigate('/signup')}}> Get Started </button>
                 </div>
                 
             </div>
