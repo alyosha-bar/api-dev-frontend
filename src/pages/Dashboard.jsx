@@ -75,28 +75,18 @@ const Dashboard = () => {
 
     return ( 
         <div className="bg-white h-screen overflow-hidden flex justify-center flex-row">
-            {/* <nav className="sidebar w-1/6 bg-blue-200">
-                <div className="flex justify-between items-center p-4">
-                    <h2 className="p-8 text-black text-2xl"> All APIs: </h2>
-                    <button className="text-black text-2xl"> {"<"}</button>
-                </div>
-                <ul className="flex flex-col p-10">
-                    <li className="text-black p-2 my-4 w-2/3"> <button onClick={() => {alert("Modal to regenerate API token")}} className="border border-solid border-black p-4"> Manage API Token </button> </li>
-                </ul>
-            </nav> */}
-
             <div className="dashboard flex flex-col w-3/5 p-10">
                 <div className="flex justify-around w-5/5">
                     
-                    {totalreq && <div className="border border-solid border-green-600 w-1/5 flex flex-col justify-center p-4">
+                    {totalreq && <div className="border rounded-sm border-solid border-green-600 w-1/4 flex flex-col justify-center p-4">
                         <h5 className="text-green-600 text-sm"> Total Requests: </h5>
-                        <h3 className="text-green-600 text-3xl p-2 self-center"> {totalreq.toLocaleString()} <div className="text-green-600 text-sm">requests in {latestMonth} </div> </h3>
+                        <h3 className="text-green-600 text-3xl p-2 self-center"> {totalreq.toLocaleString()} <div className="text-green-600 text-xs">requests in {latestMonth} </div> </h3>
                     </div>}
-                    {errorRate && <div className="border border-solid border-red-600 w-1/5 flex flex-col justify-center p-4">
+                    {errorRate && <div className="border rounded-sm border-solid border-red-600 w-1/4 flex flex-col justify-center p-4">
                     <h5 className="text-red-600 text-sm"> Error Rate: </h5>
-                        <h3 className="text-red-600 text-3xl p-2 self-center"> {errorRate.toFixed(2)}% </h3>
+                        <h3 className="text-red-600 text-3xl p-2 self-center"> {errorRate.toFixed(2)}% <div className="text-red-600 text-xs"> in {latestMonth} </div> </h3>
                     </div>}
-                    <div className="border border-solid border-gray-200 w-1/5 flex flex-col justify-center p-4">
+                    <div className="border rounded-sm border-solid border-gray-200 w-1/5 flex flex-col justify-center p-4">
                         <h5 className="text-black text-sm"> Avg Latency: </h5>
                         <h3 className="text-black text-3xl p-2 self-center"> 247 ms </h3>
                     </div>

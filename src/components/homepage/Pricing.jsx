@@ -50,7 +50,7 @@ const Pricing = () => {
                 'Advanced Analytics',
                 'Automatic Ratelimiting',
               ]}
-              buttonText="Get Started"
+              buttonText="Register Interest"
               isPopular={false} // This is the popular plan
               comingSoon={true}
             />
@@ -64,10 +64,9 @@ const Pricing = () => {
                 'Push Notifications',
                 'Advanced Analytics',
                 'Unlimited Team Members',
-                '',
-                '',
+                'Collaboration Features',
               ]}
-              buttonText="Get Started"
+              buttonText="Register Interest"
               isPopular={false}
               comingSoon={true}
             />

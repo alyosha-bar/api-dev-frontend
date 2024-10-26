@@ -10,18 +10,15 @@ const HomePage = () => {
 
     return ( 
         <div className="">
-
-            {/* Curved SVG Divider */}
-
-            <div className="hero p-36 flex items-center justify-around bg-cyan-200">
+            <div className="hero p-36 flex items-center h-3/4 justify-around bg-cyan-200">
                 <div className="title-area w-3/5">
-                    <h5 className="text-black text-xl font-sans"> Some small font description of the product. </h5>
+                    <h5 className="text-black text-xl font-sans"> Receive crucial analytics into your API usage. </h5>
                     <h1 className="text-8xl font-sans font-bold"> TRACK YOUR API USAGE. </h1>
                     <h3 className="text-black text-5xl mt-8"> NEVER OVERPAY. </h3>
                 </div>
                 <div className="call-to-action p-10 w-2/5 flex flex-col items-center justify-center">
                     <p className="text-black max-w-72"> API-Dev will track and analyse your 3rd party API usage and prevent you from overpaying your plan.</p>
-                    <button className="bg-blue-500 text-white p-4 m-6 rounded-lg w-2/5 min-w-36 hover:bg-blue-600 transition duration-300" onClick={() => {navigate('/signup')}}> Get Started </button>
+                    <button className="bg-blue-500 text-white p-4 m-6 rounded-lg w-2/5 min-w-36 hover:bg-blue-600 transition duration-300" onClick={() => {navigate('/signup')}}> Start Tracking </button>
                 </div>
                 
             </div>
@@ -40,17 +37,7 @@ const HomePage = () => {
                 ></path>
                 </svg>
             </div>
-
-
-            {/* <h1 className="text-black text-2xl"> HOME PAGE FOR NEW PEOPLE! </h1>
-            <p className="text-black"> Explanation to what this product is.</p>
-            <p className="text-black"> What languages and frameworks does it support. </p>
-            <p className="text-black"> Pricing </p>
-            <button className="text-black p-2 border-solid border-black border m-2"> Get Started </button> */}
-
-
             <Tech />
-
             <div className="w-full overflow-hidden leading-none bg-white ">
                 <svg
                 className="block w-full h-32"
