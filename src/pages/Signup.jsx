@@ -39,15 +39,13 @@ const Signup = () => {
           .then( (userCredential) => {
             //signed up
             const userF = userCredential.user
-            console.log("HERE MOFO")
-            console.log("USER RIGHT HERE: " + userF)
             putUser(userF)
             return userF
           }).then( (userF) => {
-            console.log("sending request to mongodb")
             insertUser(userF)
-            console.log("returned from mongodb. redirecting ... ")
-            setTimeout(2000)
+
+            // generate an authetication token or cookie
+
             navigate('/')
           }).catch( (err) => {
             console.error(err)

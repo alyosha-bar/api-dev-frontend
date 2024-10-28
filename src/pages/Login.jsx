@@ -28,6 +28,10 @@ const Login = () => {
           const userF = userCredential.user
           console.log(userF)
           putUser(userF)
+
+          // generate an authetication token or cookie
+
+
           navigate('/home')
         }).catch( (err) => {
           console.error(err)
