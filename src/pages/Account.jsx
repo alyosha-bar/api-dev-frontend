@@ -77,62 +77,66 @@ const Account = () => {
 
     return ( 
         <div className="flex justify-center my-10">
-            <div className="flex flex-col justify-center items-center w-2/5 border-l border-r border-solid border-black">
+            <div className="flex flex-col justify-center items-center w-full md:w-2/3 lg:w-1/2 border border-gray-300 rounded-lg shadow-md p-6 bg-white">
 
-                {/* <h2 className="text-black text-xl">Account info for {user.uid}</h2>
-                <ul >
-                    <li className="text-black">Dashboard of all API usage</li>
-                    <li className="text-black">Pricing - which plan they are on?</li>
-                    <li className="text-black">Allow to regenerate user token</li>
-                    <li className="text-black">Reset Password</li>
-                    <li className="text-black">Delete Account</li>
-                </ul> */}
-
-                {accountInfo && <div className="p-10 px-36 w-full">
-                    <h1 className="text-black text-2xl font-bold p-4"> Profile Details: </h1>
-                    <div className="flex justify-between py-4">
-                        <div className="text-black"> Username: <i className="text-black"> {accountInfo.firstname} </i> </div>
-                        <div className="text-black"> Email: <i className="text-black"> {accountInfo.email} </i> </div>
+                {/* Basic Information Section */}
+                {accountInfo && (
+                    <div className="w-full mb-6">
+                        <h2 className="text-gray-800 text-2xl font-bold mb-4">Profile Details:</h2>
+                        <div className="flex justify-between text-gray-700">
+                            <p>Username: <span className="font-semibold">{accountInfo.username}</span></p>
+                            <p>Email: <span className="font-semibold">{accountInfo.email}</span></p>
+                        </div>
+                        <div className="flex justify-between text-gray-700 mt-4">
+                            <p>First Name: <span className="font-semibold">{accountInfo.firstname}</span></p>
+                            <p>Last Name: <span className="font-semibold">{accountInfo.lastname}</span></p>
+                        </div>
+                        <button className="mt-6 text-red-500 font-semibold px-4 py-2 border border-red-500 rounded hover:bg-red-500 hover:text-white">
+                            Reset Password
+                        </button>
                     </div>
-                    <div className="flex justify-between py-4">
-                        <div className="text-black"> Firstname: <i className="text-black"> {accountInfo.firstname} </i> </div>
-                        <div className="text-black"> Lastname: <i className="text-black"> {accountInfo.lastname}v </i> </div>
-                    </div>
-                    <button className="text-red-300 font-semibold p-3 border border-solid border-red-300 bg-gray-200"> Reset Password </button>
-                </div>}
+                )}
 
-                <div className="divider border-t border-solid border-black w-4/5 p-4"></div>
+                <div className="w-full border-t border-gray-300 my-6"></div>
 
-                <div className="py-4">
-                    <h1 className="text-black text-2xl font-bold p-4"> User Token Management: </h1>
-
-                    <div className="flex justify-between w-full items-center">
-                        <button className="text-black p-1 border border-black "> Show Token </button>
-                        <div className="flex justify-between">
-                            <p className="text-white bg-black p-4 w-3/5 break-words whitespace-normal"> { userToken } </p>
-                            <button onClick={() => {copyToken(userToken)}} className="bg-blue-500 text-white p-4"> Copy </button>
+                {/* User Token Management Section */}
+                <div className="w-full">
+                    <h2 className="text-gray-800 text-2xl font-bold mb-4">User Token Management:</h2>
+                    
+                    <div className="flex items-center justify-between mb-4">
+                        <button className="text-gray-700 px-3 py-1 border border-gray-700 rounded hover:bg-gray-700 hover:text-white">
+                            Show Token
+                        </button>
+                        <div className="flex items-center">
+                            <p className="text-white bg-black px-4 py-2 rounded-l break-all w-48 sm:w-64">{userToken}</p>
+                            <button 
+                                onClick={() => copyToken(userToken)} 
+                                className="bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600"
+                            >
+                                Copy
+                            </button>
                         </div>
                     </div>
 
-                    <div className="bg-gray-200 p-6">
-                        <p className="text-black p-2 text-lg"> Regenerate token if revealed. </p>
-                        <div className="text-black">
-                            <button onClick={generateUserToken} className="bg-blue-200 p-2"> Generate User Token </button>
-                            <div className="flex justify-between">
-                                <p className="text-white bg-black p-4 w-4/5 break-words whitespace-normal"> { userToken }</p>
-                                <button onClick={() => {copyToken(userToken)}} className="bg-blue-500 text-white p-4"> Copy </button>
-                            </div>
-                        </div>
+                    <div className="bg-gray-100 p-4 rounded-lg">
+                        <p className="text-gray-700 mb-2">Regenerate token if necessary.</p>
+                        <button 
+                            onClick={generateUserToken} 
+                            className="bg-blue-200 text-blue-800 px-3 py-1 rounded hover:bg-blue-300"
+                        >
+                            Generate User Token
+                        </button>
                     </div>
                 </div>
 
-                <div className="divider border-t border-solid border-black w-4/5 p-4 my-10"></div>
+                <div className="w-full border-t border-gray-300 my-6"></div>
 
-                <div className="py-4">
-                    <button className="text-red-300 font-semibold p-3 border border-solid border-red-300 bg-gray-200"> Delete Account </button>
+                {/* Account Deletion Section */}
+                <div className="w-full text-center">
+                    <button className="text-red-500 font-semibold px-4 py-2 border border-red-500 rounded hover:bg-red-500 hover:text-white">
+                        Delete Account
+                    </button>
                 </div>
-
-
             </div>
         </div>
 
