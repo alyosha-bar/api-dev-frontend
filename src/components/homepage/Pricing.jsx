@@ -30,7 +30,7 @@ const Pricing = () => {
                 title="Hobby Plan"
                 price="0"
                 features={[
-                  '25 APIs Registered',
+                  'Limited Projects',
                   'Push Notifications',
                   'Basic Analytics',
                   '',

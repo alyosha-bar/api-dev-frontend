@@ -100,9 +100,9 @@ const Home = () => {
     return (
         <div className="bg-white h-full mb-32">
             
-            <button onClick={checkAuthToken}> Check cookie </button>
+            {/* <button onClick={checkAuthToken}> Check cookie </button>
             <button onClick={() => {document.cookie = `testCookie=testValue; path=/; max-age=${60 * 60}; samesite=strict`;
-}}> Basic Cookie </button>
+}}> Basic Cookie </button> */}
 
             <h1 className="text-black text-5xl p-10 text-bold"> Registered APIs </h1>
             <div className="bg-white p-10 h-full flex justify-center align-center">

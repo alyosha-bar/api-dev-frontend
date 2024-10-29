@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
-import Linechart from "../components/charts/linechart";
+import Linechart from "../components/charts/Linechart";
 import SimplePieChart from "../components/charts/SimplePieChart";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Sidebar from "../components/Sidebar";
 
 
 
@@ -73,9 +74,17 @@ const Dashboard = () => {
     }
 
 
+    const manageToken = () => {
+        console.log("Managing Token")
+    }
+
+
     return ( 
-        <div className="bg-white h-screen overflow-hidden flex justify-center flex-row">
-            <div className="dashboard flex flex-col w-3/5 p-10">
+        <div className="bg-white h-screen overflow-hidden flex justify-between flex-row">
+            <Sidebar></Sidebar>
+            <div className="dashboard flex flex-col w-4/5 p-10">
+                <button className="p-4 bg-gray-200 m-2 w-1/4" onClick={manageToken}> ManageToken </button>
+                
                 <div className="flex justify-around w-5/5">
                     
                     {totalreq && <div className="border rounded-sm border-solid border-green-600 w-1/4 flex flex-col justify-center p-4">
@@ -88,7 +97,7 @@ const Dashboard = () => {
                     </div>}
                     <div className="border rounded-sm border-solid border-gray-200 w-1/5 flex flex-col justify-center p-4">
                         <h5 className="text-black text-sm"> Avg Latency: </h5>
-                        <h3 className="text-black text-3xl p-2 self-center"> 247 ms <div className="text-green-600 text-xs"> in {latestMonth} </div> </h3>
+                        <h3 className="text-black text-3xl p-2 self-center"> 247 ms <div className="text-xs"> in {latestMonth} </div> </h3>
                     </div>
                 </div>
                 <div className="flex p-4 w-full justify-center items-center">

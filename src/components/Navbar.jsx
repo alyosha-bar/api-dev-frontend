@@ -12,7 +12,6 @@ const Navbar = () => {
         // remove cookie
         // Set the cookie's max-age to 0 to remove it
         document.cookie = "authToken=; path=/; max-age=0";
-        
         navigate('/login')
     }
 
@@ -22,7 +21,7 @@ const Navbar = () => {
         <nav className='bg-blue-300 py-6 px-6'>
         <div className='container mx-auto flex justify-between items-center'>
           {/* Logo */}
-          <h2 className='text-2xl font-bold text-gray-800'> <Link to='/'> API-Dev </Link></h2>
+          <h2 className='text-2xl font-bold text-gray-800'> <Link to='/'> API-Track </Link></h2>
   
           {/* Navigation Links */}
           <div className='space-x-6 flex items-center'>
