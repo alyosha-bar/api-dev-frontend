@@ -17,7 +17,9 @@ const Home = () => {
 
         if (user) {
             // fetch(`/api/home/${user.uid}`)
-            fetch(`${import.meta.env.VITE_SERVER_URL}/home/${user.uid}`)
+            fetch(`${import.meta.env.VITE_SERVER_URL}/home/${user.uid}`, {
+                credentials: "include"
+            })
             .then((response) => {
                 if (!response.ok) {
                     // If the response status is not OK (e.g., 404 or 500), throw an error

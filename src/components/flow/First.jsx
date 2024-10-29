@@ -17,6 +17,7 @@ const First = () => {
         // pass token to the slide 2 (next slide)
         fetch(`${import.meta.env.VITE_SERVER_URL}/generateApiInfo`, {
             method: 'POST',
+            credentials: "include",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 uid: user.uid,

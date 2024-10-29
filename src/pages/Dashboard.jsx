@@ -19,7 +19,8 @@ const Dashboard = () => {
 
     useEffect( () => {
         fetch(`${import.meta.env.VITE_SERVER_URL}/trackinfo/${id}`, {
-            method: 'GET'
+            method: 'GET',
+            credentials: "include"
         }).then( (res) => {
             if (!res.ok) {
                 throw new Error("Error fetching dashboard.")
