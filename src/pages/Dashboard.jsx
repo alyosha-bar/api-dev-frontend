@@ -18,7 +18,7 @@ const Dashboard = () => {
     
 
     useEffect( () => {
-        fetch(`/api/trackinfo/${id}`, {
+        fetch(`${import.meta.env.VITE_SERVER_URL}/trackinfo/${id}`, {
             method: 'GET'
         }).then( (res) => {
             if (!res.ok) {

@@ -66,7 +66,7 @@ const Signup = () => {
             
 
             // fetch request
-            fetch('/api/signup', {
+            fetch(`${import.meta.env.VITE_SERVER_URL}/signup`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({

@@ -12,7 +12,7 @@ const Second = () => {
     const generateApiToken = () => {
         
         // take in api-name & id from the previous slide
-        fetch(`/api/generateApiToken/${id}`, {
+        fetch(`${import.meta.env.VITE_SERVER_URL}/generateApiToken/${id}`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
