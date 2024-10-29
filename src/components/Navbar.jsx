@@ -8,6 +8,11 @@ const Navbar = () => {
 
     const logOut = () => {
         logout()
+
+        // remove cookie
+        // Set the cookie's max-age to 0 to remove it
+        document.cookie = "authToken=; path=/; max-age=0";
+        
         navigate('/login')
     }
 

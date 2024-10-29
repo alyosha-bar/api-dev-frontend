@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from '../contexts/UserContext'
 import { auth } from "../auth/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { generateAndStoreJWT } from "../auth/authToken";
 
 const Login = () => {
 
@@ -30,7 +31,7 @@ const Login = () => {
           putUser(userF)
 
           // generate an authetication token or cookie
-
+          generateAndStoreJWT(userF.uid, import.meta.env.VITE_AUTH_SECRET)
 
           navigate('/home')
         }).catch( (err) => {

@@ -6,7 +6,6 @@ const Footer = () => {
 
     // change the socials
     const socials = [
-        { href: 'https://www.facebook.com', icon: faFacebook, label: 'Facebook' },
         { href: 'https://www.twitter.com', icon: faTwitter, label: 'Twitter' },
         { href: 'https://www.linkedin.com', icon: faLinkedin, label: 'LinkedIn' },
         { href: 'https://www.instagram.com', icon: faGlobe, label: 'Website' },
@@ -15,7 +14,7 @@ const Footer = () => {
     
 
     return ( 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between border-t-2 border-gray-200">
 
             <div className="flex space-x-16 justify-center items-center mt-8 w-3/5">
             {socials.map((social, index) => (

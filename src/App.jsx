@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import Navbar from './components/Navbar'
 import Account from './pages/Account'
 import HomePage from './pages/HomePage'
+import Footer from './components/homepage/Footer'
 
 
 
@@ -30,6 +31,8 @@ function App() {
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
       </Routes>
+
+      <Footer />
     </>
   )
 }

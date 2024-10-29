@@ -4,6 +4,8 @@ import { auth } from "../auth/firebase";
 import {createUserWithEmailAndPassword} from 'firebase/auth'
 import { UserContext } from "../contexts/UserContext";
 
+import { generateAndStoreJWT } from "../auth/authToken";
+
 const Signup = () => {
 
     const [email, setEmail] = useState('')
@@ -45,6 +47,8 @@ const Signup = () => {
             insertUser(userF)
 
             // generate an authetication token or cookie
+            generateAndStoreJWT(userF.uid, import.meta.env.VITE_AUTH_SECRET)
+
 
             navigate('/')
           }).catch( (err) => {

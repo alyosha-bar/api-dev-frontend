@@ -18,6 +18,7 @@
     "@tremor/react": "^3.18.3",
     "clsx": "^2.1.1",
     "firebase": "^10.14.1",
+    "jsrsasign": "^11.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",

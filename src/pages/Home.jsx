@@ -84,9 +84,26 @@ const Home = () => {
         console.log("Flow finished!");
     };
 
+    const checkAuthToken = () => {
+        // Check for the 'authToken' cookie in document.cookie
+        const cookies = document.cookie.split("; ").find(row => row.startsWith("authToken="));
+
+        // Update the state based on whether the authToken cookie is found
+        if (cookies) {
+            console.log("Auth token cookie exists!");
+        } else {
+            console.log("Auth token cookie not found.");
+        }
+    };
+
 
     return (
-        <div className="bg-white h-full">
+        <div className="bg-white h-full mb-32">
+            
+            <button onClick={checkAuthToken}> Check cookie </button>
+            <button onClick={() => {document.cookie = `testCookie=testValue; path=/; max-age=${60 * 60}; samesite=strict`;
+}}> Basic Cookie </button>
+
             <h1 className="text-black text-5xl p-10 text-bold"> Registered APIs </h1>
             <div className="bg-white p-10 h-full flex justify-center align-center">
                 {/* <button className="text-black" onClick={() => {console.log(apis)}}>APIS</button> */}

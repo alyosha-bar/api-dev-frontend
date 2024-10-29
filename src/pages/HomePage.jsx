@@ -55,7 +55,7 @@ const HomePage = () => {
 
             <Pricing/>
 
-            <Footer />
+            {/* <Footer /> */}
 
         </div>
     );
