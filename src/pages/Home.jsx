@@ -101,7 +101,10 @@ const Home = () => {
 
     return (
         <div className="bg-white h-full mb-32">
-            <button onClick={() => console.log(import.meta.env.VITE_SAMESITE.type)}> SHOW SAMESITE </button>
+            <button onClick={() => {
+                console.log(import.meta.env.VITE_SAMESITE)
+                console.log(import.meta.env.VITE_SAMESITE.type)
+                }}> SHOW SAMESITE </button>
             {/* <button onClick={checkAuthToken}> Check cookie </button>
             <button onClick={() => {document.cookie = `testCookie=testValue; path=/; max-age=${60 * 60}; samesite=strict`;
 }}> Basic Cookie </button> */}

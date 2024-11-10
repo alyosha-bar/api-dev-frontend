@@ -17,5 +17,5 @@ export function generateAndStoreJWT(userId, secret) {
     const sameSite = `${import.meta.env.VITE_SAMESITE}`;
 
     // Store JWT in a cookie without HttpOnly and conditionally with Secure
-    document.cookie = `authToken=${token}; ${secureFlag} SameSite=${sameSite}; path=/; max-age=${60 * 60}`;
+    document.cookie = `authToken=${token}; Secure SameSite=${sameSite}; path=/; max-age=${60 * 60}`;
 }
