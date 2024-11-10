@@ -13,8 +13,9 @@ export function generateAndStoreJWT(userId, secret) {
     const token = KJUR.jws.JWS.sign("HS256", JSON.stringify(header), JSON.stringify(payload), secret);
 
     // Conditionally set Secure flag if on HTTPS
-    const secureFlag = window.location.protocol === 'https:' ? 'Secure;' : '';
+    const secureFlag = window.location.protocol === 'https:' ? 'Secure;' : '';  
+    const sameSite = `${import.meta.env.VITE_SAMESITE}`;
 
     // Store JWT in a cookie without HttpOnly and conditionally with Secure
-    document.cookie = `authToken=${token}; ${secureFlag} SameSite=Strict; path=/; max-age=${60 * 60}`;
+    document.cookie = `authToken=${token}; ${secureFlag} SameSite=${sameSite}; path=/; max-age=${60 * 60}`;
 }

@@ -22,7 +22,7 @@ const Account = () => {
 
     useEffect( () => {
         // fetch /api/account/:uid
-        fetch(`/api/account/${user.uid}`, {
+        fetch(`${import.meta.env.VITE_SERVER_URL}/account/${user.uid}`, {
             method: 'GET',
         })
         .then((res) => {
@@ -47,8 +47,9 @@ const Account = () => {
 
         // transform using encryption algorithm with a version number
         // call backend so the process is secure
-        fetch('/api/generate', {
+        fetch(`${import.meta.env.SERVER_URL}/generate`, {
             method: 'POST',
+            credentials: "include",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 uid: user.uid
