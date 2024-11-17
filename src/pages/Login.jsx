@@ -31,7 +31,47 @@ const Login = () => {
           putUser(userF)
 
           // generate an authetication token or cookie
-          generateAndStoreJWT(userF.uid, import.meta.env.VITE_AUTH_SECRET)
+          // generateAndStoreJWT(userF.uid, import.meta.env.VITE_AUTH_SECRET)
+          
+          // make request to server to generate token.
+          fetch(`${import.meta.env.VITE_SERVER_URL}/generate-token`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: "include", // Include cookies (if any) in the request
+            body: JSON.stringify({
+                userId: userF.uid
+            })
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.token) {
+                // Save the token in the Authorization header for future requests
+                const token = data.token;
+
+                console.log("Token: " + token)
+
+                // Example: setting token in Authorization header for future requests
+                // You can use localStorage, sessionStorage, or in-memory storage based on your use case
+                localStorage.setItem('authToken', token); // Save token to localStorage
+
+                // Example: setting token in the Authorization header for all future requests
+                // You can set the Authorization header globally for your fetch requests
+                // For example, using a custom function or a library like axios:
+                fetch.defaults.headers['Authorization'] = `Bearer ${token}`;
+            } else {
+                console.error("Failed to generate token");
+            }
+          })
+          .catch(error => {
+            console.error("Error generating token:", error);
+          });
+
+          // save token in Authorization tab
+
+          // access the cookies through authorization
+
 
           navigate('/home')
         }).catch( (err) => {

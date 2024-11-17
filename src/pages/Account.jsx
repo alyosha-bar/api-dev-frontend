@@ -21,9 +21,19 @@ const Account = () => {
 
 
     useEffect( () => {
+
+        const authToken = localStorage.getItem('authToken')
+        if (!authToken) {
+            console.log('You need to log in first');
+            return;
+        }
+
         // fetch /api/account/:uid
         fetch(`${import.meta.env.VITE_SERVER_URL}/account/${user.uid}`, {
             method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${authToken}`
+            }
         })
         .then((res) => {
             if (res.ok) {
@@ -50,7 +60,10 @@ const Account = () => {
         fetch(`${import.meta.env.SERVER_URL}/generate`, {
             method: 'POST',
             credentials: "include",
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authToken}`
+            },
             body: JSON.stringify({
                 uid: user.uid
             })

@@ -14,11 +14,22 @@ const Home = () => {
     const navigate = useNavigate()
 
     useEffect( () => {
-
+        
         if (user) {
+
+            const authToken = localStorage.getItem('authToken')
+            if (!authToken) {
+                console.log('You need to log in first');
+                return;
+            }
+
             // fetch(`/api/home/${user.uid}`)
             fetch(`${import.meta.env.VITE_SERVER_URL}/home/${user.uid}`, {
-                credentials: "include"
+                credentials: "include",
+                headers: {
+                    'Content-Type' : "application/json",
+                    'Authorization': `Bearer ${authToken}`
+                }
             })
             .then((response) => {
                 if (!response.ok) {

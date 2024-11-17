@@ -18,9 +18,19 @@ const Dashboard = () => {
     
 
     useEffect( () => {
+
+        const authToken = localStorage.getItem('authToken')
+        if (!authToken) {
+            console.log('You need to log in first');
+            return;
+        }
+
         fetch(`${import.meta.env.VITE_SERVER_URL}/trackinfo/${id}`, {
             method: 'GET',
-            credentials: "include"
+            credentials: "include",
+            headers : {
+                'Authorization': `Bearer ${authToken}`
+            }
         }).then( (res) => {
             if (!res.ok) {
                 throw new Error("Error fetching dashboard.")
