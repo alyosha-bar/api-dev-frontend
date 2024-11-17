@@ -19,6 +19,9 @@ export function generateAndStoreJWT(userId, secret) {
     const secureFlag = window.location.protocol === 'https:' ? 'Secure;' : '';  
     const sameSite = `${import.meta.env.VITE_SAMESITE}`;
 
+    console.log(secureFlag)
+    console.log(sameSite)
+
     // Store JWT in a cookie without HttpOnly and conditionally with Secure
     document.cookie = `authToken=${token}; ${secureFlag} SameSite=${sameSite}; path=/; max-age=${60 * 60}`;
 }
