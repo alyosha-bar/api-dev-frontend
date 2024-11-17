@@ -16,14 +16,12 @@ const Home = () => {
     useEffect( () => {
         
         if (user) {
-
             const authToken = localStorage.getItem('authToken')
             if (!authToken) {
                 console.log('You need to log in first');
                 return;
             }
 
-            // fetch(`/api/home/${user.uid}`)
             fetch(`${import.meta.env.VITE_SERVER_URL}/home/${user.uid}`, {
                 credentials: "include",
                 headers: {
@@ -53,15 +51,14 @@ const Home = () => {
             });        
         }
 
-        // setApis(testData)
     }, [user])
 
     useEffect(() => {
         if (!user) {
-            console.log("bruh bruh")
             navigate('/login')
         }
     }, [user])
+
 
 
     const goToDash = (id) => {
@@ -97,38 +94,11 @@ const Home = () => {
         console.log("Flow finished!");
     };
 
-    const checkAuthToken = () => {
-        // Check for the 'authToken' cookie in document.cookie
-        const cookies = document.cookie.split("; ").find(row => row.startsWith("authToken="));
-
-        // Update the state based on whether the authToken cookie is found
-        if (cookies) {
-            console.log("Auth token cookie exists!");
-        } else {
-            console.log("Auth token cookie not found.");
-        }
-    };
-
-
     return (
         <div className="bg-white h-full mb-32">
-            <button onClick={() => {
-                console.log(import.meta.env.VITE_SAMESITE)
-                console.log(import.meta.env.VITE_SAMESITE.type)
-                }}> SHOW SAMESITE </button>
-            {/* <button onClick={checkAuthToken}> Check cookie </button>
-            <button onClick={() => {document.cookie = `testCookie=testValue; path=/; max-age=${60 * 60}; samesite=strict`;
-}}> Basic Cookie </button> */}
-
+            {/* <button onClick={() => console.log(apis)}> Check APIS </button> */}
             <h1 className="text-black text-5xl p-10 text-bold"> Registered APIs </h1>
             <div className="bg-white p-10 h-full flex justify-center align-center">
-                {/* <button className="text-black" onClick={() => {console.log(apis)}}>APIS</button> */}
-                {/* {error && (
-                        <div className="text-black-500">
-                            <h3 className="text-black"> {error.message || "Unknown error occurred"}</h3>
-                            {error.details && <p>{error.details}</p>}
-                        </div>
-                    )} */}
                 <div className="grid gap-12 p-2 mt-4 w-[90vw] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 
                 {apis &&
@@ -142,7 +112,7 @@ const Home = () => {
                     >
                         <h3 className="text-xl font-bold mb-2">{api.name}</h3>
                         <p className="text-gray-700">{api.description}</p>
-                        <p className="text-gray-500 text-sm"> Additional Information which fills up space </p>
+                        {/* <p className="text-gray-500 text-sm"> Additional Information which fills up space </p> */}
                     </div>
                     ))}
                 <button
@@ -159,9 +129,6 @@ const Home = () => {
                     setIsModalOpen(false)
                     setCurrentSlide(0)
                 }} index={currentSlide}>
-
-                {/* pass in the components for each slide */}
-                {/* <p className="mt-4 text-black">{slides[currentSlide].content}</p> */}
 
                 <div className="flex justify-between py-4 ">
                     {currentSlide > 0 && (

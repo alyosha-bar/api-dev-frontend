@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from '../contexts/UserContext'
 import { auth } from "../auth/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { generateAndStoreJWT } from "../auth/authToken";
 
 const Login = () => {
 
