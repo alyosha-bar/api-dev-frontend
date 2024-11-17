@@ -47,7 +47,7 @@ const Signup = () => {
             insertUser(userF)
 
             // generate an authetication token or cookie
-            generateAndStoreJWT(userF.uid, import.meta.env.VITE_AUTH_SECRET)
+            // generateAndStoreJWT(userF.uid, import.meta.env.VITE_AUTH_SECRET)
 
 
             navigate('/')
