@@ -22,6 +22,12 @@ export function generateAndStoreJWT(userId, secret) {
     console.log(secureFlag)
     console.log(sameSite)
 
+    if (import.meta.env.VITE_PROD === 'false') {
+        document.cookie = `authToken=${token}; ${secureFlag} SameSite=${sameSite}; path=/;  max-age=${60 * 60}`;
+        return
+    }
+
     // Store JWT in a cookie without HttpOnly and conditionally with Secure
-    document.cookie = `authToken=${token}; ${secureFlag} SameSite=${sameSite}; path=/; max-age=${60 * 60}`;
+    document.cookie = `authToken=${token}; ${secureFlag} SameSite=${sameSite}; path=/; domain=${import.meta.env.VITE_DOMAIN}; max-age=${60 * 60}`;
+
 }
