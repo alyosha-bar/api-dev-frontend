@@ -3,6 +3,9 @@ import KJUR from 'jsrsasign';
 
 // Function to generate JWT and store it in a cookie
 export function generateAndStoreJWT(userId, secret) {
+
+    console.log("YO creating token")
+
     const payload = {
         sub: userId,
         iat: Math.floor(Date.now() / 1000),
@@ -17,5 +20,5 @@ export function generateAndStoreJWT(userId, secret) {
     const sameSite = `${import.meta.env.VITE_SAMESITE}`;
 
     // Store JWT in a cookie without HttpOnly and conditionally with Secure
-    document.cookie = `authToken=${token}; Secure SameSite=${sameSite}; path=/; max-age=${60 * 60}`;
+    document.cookie = `authToken=${token}; ${secureFlag} SameSite=${sameSite}; path=/; max-age=${60 * 60}`;
 }
