@@ -26,7 +26,7 @@ function App() {
         <Route path='/dashboard/:id' element={<Dashboard />} />
         <Route path='/account/:id' element={<Account />} />
 
-        
+        {/* unprotected routes */}
         <Route path='/' element={<HomePage />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
