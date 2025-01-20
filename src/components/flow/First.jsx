@@ -14,11 +14,20 @@ const First = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        const authToken = localStorage.getItem('authToken')
+        if (!authToken) {
+            console.log('You need to log in first');
+            return;
+        }
+
         // pass token to the slide 2 (next slide)
         fetch(`${import.meta.env.VITE_SERVER_URL}/generateApiInfo`, {
             method: 'POST',
             credentials: "include",
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authToken}`
+            },
             body: JSON.stringify({
                 uid: user.uid,
                 name: apiName,

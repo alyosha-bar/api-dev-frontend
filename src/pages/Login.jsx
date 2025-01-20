@@ -32,11 +32,18 @@ const Login = () => {
           // generate an authetication token or cookie
           // generateAndStoreJWT(userF.uid, import.meta.env.VITE_AUTH_SECRET)
           
+          const authToken = localStorage.getItem('authToken')
+          if (!authToken) {
+              console.log('You need to log in first');
+              return;
+          }
+
           // make request to server to generate token.
           fetch(`${import.meta.env.VITE_SERVER_URL}/generate-token`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authToken}`
             },
             credentials: "include", // Include cookies (if any) in the request
             body: JSON.stringify({
