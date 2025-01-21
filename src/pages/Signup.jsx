@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../auth/firebase";
 import {createUserWithEmailAndPassword} from 'firebase/auth'
 import { UserContext } from "../contexts/UserContext";
+import { insertUser, validateCredentials } from "../auth/authFunctions";
 
 const Signup = () => {
 
@@ -10,7 +11,6 @@ const Signup = () => {
     const [confirmEmail, setConfirmEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [username, setUsername] = useState('')
     const [firstname, setFirstname] = useState('')
     const [lastname, setLastname] = useState('')
 
@@ -20,114 +20,69 @@ const Signup = () => {
     
     const {user, putUser} = useContext(UserContext)
 
-    const validateCredentials = (email, confirmEmail, password, confirmPassword) => {
-      if (email != confirmEmail || password != confirmPassword) {
-        return false;
-      }
-
-      return true
-    }
-
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
         const valid = validateCredentials(email, confirmEmail, password, confirmPassword)
 
-        if (valid) {
-          createUserWithEmailAndPassword(auth, email, password)
-          .then( (userCredential) => {
-            //signed up
-            const userF = userCredential.user
-            putUser(userF)
-            return userF
-          }).then( (userF) => {
-            insertUser(userF)
-
-            const authToken = localStorage.getItem('authToken')
-            if (!authToken) {
-                console.log('You need to log in first');
-                return;
-            }
-
-            // generate an authetication token or cookie
-            // generateAndStoreJWT(userF.uid, import.meta.env.VITE_AUTH_SECRET)
-            fetch(`${import.meta.env.VITE_SERVER_URL}/generate-token`, {
-              method: "POST",
-              headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${authToken}`
-              },
-              credentials: "include", // Include cookies (if any) in the request
-              body: JSON.stringify({
-                  userId: userF.uid
-              })
-            })
-            .then(response => response.json())
-            .then(data => {
-              if (data.token) {
-                  // Save the token in the Authorization header for future requests
-                  const token = data.token;
-  
-                  console.log("Token: " + token)
-  
-                  // Example: setting token in Authorization header for future requests
-                  // You can use localStorage, sessionStorage, or in-memory storage based on your use case
-                  localStorage.setItem('authToken', token); // Save token to localStorage
-  
-                  // Example: setting token in the Authorization header for all future requests
-                  // You can set the Authorization header globally for your fetch requests
-                  // For example, using a custom function or a library like axios:
-                  fetch.defaults.headers['Authorization'] = `Bearer ${token}`;
-              } else {
-                  console.error("Failed to generate token");
-              }
-            })
-            .catch(error => {
-              console.error("Error generating token:", error);
-            });
-  
-
-            navigate('/')
-          }).catch( (err) => {
-            console.error(err)
-          })
-        } else {
-          setError('Invalid Credentials.')
+        if (!valid) {
+          setError("Invalid Credentials.")
+          setEmail("")
+          setConfirmEmail("")
+          setConfirmPassword("")
+          setPassword("")
+          setFirstname("")
+          setLastname("")
+          return
         }
+
+
         
+        createUserWithEmailAndPassword(auth, email, password)
+        .then( (userCredential) => {
+          //signed up
+          const userF = userCredential.user
+          putUser(userF)
+          return userF
+        }).then( (userF) => {
 
-
-        const insertUser = (newUser) => {
-            
-            // validate inputs
-            
-
-            // fetch request
-            fetch(`${import.meta.env.VITE_SERVER_URL}/signup`, {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({
-                  "uid": newUser.uid,
-                  "email": newUser.email,
-                  "firstname": firstname,
-                  "lastname": lastname
-                })
+          // generate token
+          fetch(`${import.meta.env.VITE_SERVER_URL}/generate-token`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                uid: userF.uid,
             })
-            .then( (res) => {
-                if (!res.ok) {
-                    throw new Error("Bad Request!")
-                }
-                return res.json()
-            }).then( (data) => {
-                console.log(data)
-                // put the user in to the Context as well
-                // later 
-            }).catch( (err) => {
-                console.error(err)
-            })
-        }
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.token) {
+                // Save the token in the Authorization header for future requests
+                const token = data.token;
+                localStorage.setItem('authToken', token);
+
+                // insert user into database
+                insertUser(userF.uid)
+            } else {
+                console.error("Failed to generate token");
+            }
+          })
+          .catch(error => {
+            console.error("Error generating token:", error);
+          });
+
+          // navigate to home
+          navigate('/')
+        }).catch( (err) => {
+          console.error(err)
+        })
+        
+        
     }
+
 
     return ( 
         <div className="min-h-screen flex items-center justify-center bg-gray-100">

@@ -26,32 +26,27 @@ const Login = () => {
         signInWithEmailAndPassword(auth, email, password)
         .then( (userCredential) => {
           const userF = userCredential.user
-          console.log(userF)
+          console.log("user created in firebase.")
           putUser(userF)
 
           // generate an authetication token or cookie
           // generateAndStoreJWT(userF.uid, import.meta.env.VITE_AUTH_SECRET)
-          
-          const authToken = localStorage.getItem('authToken')
-          if (!authToken) {
-              console.log('You need to log in first');
-              return;
-          }
 
           // make request to server to generate token.
           fetch(`${import.meta.env.VITE_SERVER_URL}/generate-token`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authToken}`
             },
             credentials: "include", // Include cookies (if any) in the request
             body: JSON.stringify({
-                userId: userF.uid
+                uid: userF.uid,
+                login: true,
             })
           })
           .then(response => response.json())
           .then(data => {
+            console.log("response received from the server.")
             if (data.token) {
                 // Save the token in the Authorization header for future requests
                 const token = data.token;
@@ -79,7 +74,7 @@ const Login = () => {
           // access the cookies through authorization
 
 
-          navigate('/home')
+          // navigate('/home')
         }).catch( (err) => {
           console.error(err)
         })
