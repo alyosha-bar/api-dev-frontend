@@ -73,12 +73,12 @@ const Signup = () => {
           .catch(error => {
             console.error("Error generating token:", error);
           });
-
-          // navigate to home
-          navigate('/')
         }).catch( (err) => {
           console.error(err)
         })
+
+        // navigate to home
+        navigate('/')
         
         
     }

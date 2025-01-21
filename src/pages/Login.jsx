@@ -41,7 +41,6 @@ const Login = () => {
             credentials: "include", // Include cookies (if any) in the request
             body: JSON.stringify({
                 uid: userF.uid,
-                login: true,
             })
           })
           .then(response => response.json())

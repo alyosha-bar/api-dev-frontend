@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 const Sidebar = () => {
   const [isMinimized, setIsMinimized] = useState(false);
@@ -6,6 +7,8 @@ const Sidebar = () => {
   const toggleSidebar = () => {
     setIsMinimized(!isMinimized);
   };
+
+  const params = useParams()
 
   return (
     <div className="flex h-screen">
@@ -29,10 +32,9 @@ const Sidebar = () => {
         {/* Sidebar Links */}
         <nav className="flex-grow p-4">
           <ul>
-            <li className="my-2 p-2 hover:bg-gray-200 rounded text-sm">{isMinimized ? '🏠' : 'Home'}</li>
-            <li className="my-2 p-2 hover:bg-gray-200 rounded text-sm">{isMinimized ? 'ℹ️' : 'About'}</li>
-            <li className="my-2 p-2 hover:bg-gray-200 rounded text-sm">{isMinimized ? '💼' : 'Services'}</li>
-            <li className="my-2 p-2 hover:bg-gray-200 rounded text-sm">{isMinimized ? '📞' : 'Contact'}</li>
+            <li className="my-2 p-2 hover:bg-gray-200 rounded text-sm"><Link to={`${params.id}`} className="my-2 p-2 hover:bg-gray-200 rounded text-sm">{isMinimized ? '🏠' : 'Usage Dashboard'}</Link></li>
+            <li className="my-2 p-2 hover:bg-gray-200 rounded text-sm"><Link to={`token/${params.id}`} className="my-2 p-2 hover:bg-gray-200 rounded text-sm">{isMinimized ? '🏠' : 'Token Management'}</Link></li>
+            <li className="my-2 p-2 hover:bg-gray-200 rounded text-sm"><Link to={`settings/${params.id}`} className="my-2 p-2 hover:bg-gray-200 rounded text-sm">{isMinimized ? '🏠' : 'API settings'}</Link></li>
           </ul>
         </nav>
       </div>

@@ -92,7 +92,6 @@ const Dashboard = () => {
 
     return ( 
         <div className="bg-white h-screen overflow-hidden flex justify-between flex-row">
-            <Sidebar></Sidebar>
             <div className="dashboard flex flex-col w-4/5 p-10">
                 <button className="p-4 bg-gray-200 m-2 w-1/4" onClick={manageToken}> ManageToken </button>
                 

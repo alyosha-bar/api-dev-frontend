@@ -10,6 +10,8 @@ import Navbar from './components/Navbar'
 import Account from './pages/Account'
 import HomePage from './pages/HomePage'
 import Footer from './components/homepage/Footer'
+import SidebarLayout from './layouts/Sidebarlayout'
+import Tokenmanagement from './components/Dashboard/Tokenmanagement'
 
 
 
@@ -23,7 +25,11 @@ function App() {
       <Routes>
         {/* protected routes */}
         <Route path='/home' element={<Home />} />
-        <Route path='/dashboard/:id' element={<Dashboard />} />
+        <Route path='/dashboard' element={<SidebarLayout />}>
+          <Route path=':id' element={<Dashboard/>}></Route>
+          <Route path='token/:id' element={<Tokenmanagement />}></Route>
+          <Route path='settings/:id' element={<div> API Settings </div>}></Route>
+        </Route>
         <Route path='/account/:id' element={<Account />} />
 
         {/* unprotected routes */}
