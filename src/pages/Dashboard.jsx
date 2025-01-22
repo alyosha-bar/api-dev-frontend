@@ -25,7 +25,7 @@ const Dashboard = () => {
             return;
         }
 
-        fetch(`/${import.meta.env.VITE_SERVER_URL}/trackinfo/${id}`, {
+        fetch(`${import.meta.env.VITE_SERVER_URL}/trackinfo/${id}`, {
             method: 'GET',
             credentials: "include",
             headers : {

@@ -31,7 +31,7 @@ const Account = () => {
         }
 
         // fetch /api/account/:uid
-        fetch(`/${import.meta.env.VITE_SERVER_URL}/account/${user.uid}`, {
+        fetch(`${import.meta.env.VITE_SERVER_URL}/account/${user.uid}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${authToken}`

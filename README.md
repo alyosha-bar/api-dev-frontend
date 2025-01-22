@@ -9,7 +9,8 @@ To Do List:
 
 
 Big Picture:
-- [ ] Implement Zustand or Redux
+- [ ] Implement Zustand
+--> replace UserContext with authStore
 - [ ] Implement React Query
 - [ ] Implement Testing with Vitest
 - [ ] Implement Stripe Payment
