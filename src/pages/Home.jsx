@@ -31,7 +31,6 @@ const Home = () => {
             })
             .then((response) => {
                 if (!response.ok) {
-                    // If the response status is not OK (e.g., 404 or 500), throw an error
                     return response.json().then((errorData) => {
                         // Store the full error response in state
                         setError(errorData); // errorData contains the message, status, etc.

@@ -25,7 +25,7 @@ const Dashboard = () => {
             return;
         }
 
-        fetch(`${import.meta.env.VITE_SERVER_URL}/trackinfo/${id}`, {
+        fetch(`/${import.meta.env.VITE_SERVER_URL}/trackinfo/${id}`, {
             method: 'GET',
             credentials: "include",
             headers : {
@@ -93,8 +93,6 @@ const Dashboard = () => {
     return ( 
         <div className="bg-white h-screen overflow-hidden flex justify-between flex-row">
             <div className="dashboard flex flex-col w-4/5 p-10">
-                <button className="p-4 bg-gray-200 m-2 w-1/4" onClick={manageToken}> ManageToken </button>
-                
                 <div className="flex justify-around w-5/5">
                     
                     {totalreq && <div className="border rounded-sm border-solid border-green-600 w-1/4 flex flex-col justify-center p-4">

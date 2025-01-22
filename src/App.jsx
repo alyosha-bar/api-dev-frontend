@@ -12,7 +12,7 @@ import HomePage from './pages/HomePage'
 import Footer from './components/homepage/Footer'
 import SidebarLayout from './layouts/Sidebarlayout'
 import Tokenmanagement from './components/Dashboard/Tokenmanagement'
-
+import Apisettings from './components/Dashboard/Apisettings'
 
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
         <Route path='/dashboard' element={<SidebarLayout />}>
           <Route path=':id' element={<Dashboard/>}></Route>
           <Route path='token/:id' element={<Tokenmanagement />}></Route>
-          <Route path='settings/:id' element={<div> API Settings </div>}></Route>
+          <Route path='settings/:id' element={<Apisettings />}></Route>
         </Route>
         <Route path='/account/:id' element={<Account />} />
 

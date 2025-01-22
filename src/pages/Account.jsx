@@ -3,6 +3,8 @@ import { UserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 
 
+// account data can be moved to react context or ZUSTAND
+
 const Account = () => {
 
     const { user } = useContext(UserContext)
@@ -29,7 +31,7 @@ const Account = () => {
         }
 
         // fetch /api/account/:uid
-        fetch(`${import.meta.env.VITE_SERVER_URL}/account/${user.uid}`, {
+        fetch(`/${import.meta.env.VITE_SERVER_URL}/account/${user.uid}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${authToken}`
