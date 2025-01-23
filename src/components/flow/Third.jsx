@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
 import TabbedComponent from "./TabbedComponent";
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -7,8 +5,6 @@ import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const Third = () => {
-
-    const { user } = useContext(UserContext)
 
     const scriptTag = `<script src="https://tracker-api-gateway.onrender.com/tracking?user=<YOUR USER TOKEN>" async></script>`
 

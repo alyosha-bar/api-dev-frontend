@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { UserContext } from "../../contexts/UserContext";
+import { useState } from "react";
+import { useAuthStore } from "../../stores/authStore";
 
 
 const First = () => {
@@ -9,7 +9,7 @@ const First = () => {
     const [description, setDescription] = useState('')
     const [apiToken, setApiToken] = useState('')
 
-    const {user} = useContext(UserContext)
+    const user = useAuthStore((state) => state.user)
 
     const handleSubmit = (e) => {
         e.preventDefault()

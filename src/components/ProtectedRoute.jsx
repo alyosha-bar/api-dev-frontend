@@ -1,11 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext";
-import { useContext } from "react";
 
 export const ProtectedRoute = () => {
     const navigate = useNavigate();
 
-    const {user} = useContext(UserContext);
+    const user = useAuthStore((state) => state.user)
 
     if (!user) {
       navigate("/login");

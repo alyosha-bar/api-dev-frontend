@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext} from '../contexts/UserContext'
 import Modal from "../components/Modal";
+import { useAuthStore } from "../stores/authStore";
 
 const Home = () => {
 
@@ -9,7 +9,7 @@ const Home = () => {
     const [loading, setLoading] = useState()
     const [error, setError] = useState(null)
 
-    const {user, putUser} = useContext(UserContext)
+    const user = useAuthStore((state) => state.user)
 
     const navigate = useNavigate()
 
@@ -21,6 +21,8 @@ const Home = () => {
                 console.log('You need to log in first');
                 return;
             }
+
+            console.log(user)
 
             fetch(`${import.meta.env.VITE_SERVER_URL}/home/${user.uid}`, {
                 credentials: "include",

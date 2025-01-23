@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from '../contexts/UserContext'
 import { auth } from "../auth/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useAuthStore } from "../stores/authStore";
 
 const Login = () => {
 
@@ -11,7 +11,11 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const {user, putUser, logout} = useContext(UserContext)
+    // const {user, putUser, logout} = useContext(UserContext)
+
+    const user = useAuthStore((state) => state.user)
+
+    const getUserData = useAuthStore((state) => state.getAccountInfo)
 
     useEffect(() => {
       if(user) {
@@ -26,8 +30,7 @@ const Login = () => {
         signInWithEmailAndPassword(auth, email, password)
         .then( (userCredential) => {
           const userF = userCredential.user
-          console.log("user created in firebase.")
-          putUser(userF)
+          // putUser(userF)
 
           // generate an authetication token or cookie
           // generateAndStoreJWT(userF.uid, import.meta.env.VITE_AUTH_SECRET)
@@ -48,18 +51,13 @@ const Login = () => {
             console.log("response received from the server.")
             if (data.token) {
                 // Save the token in the Authorization header for future requests
-                const token = data.token;
+                const token = data.token; 
+                localStorage.setItem('authToken', token);
 
-                console.log("Token: " + token)
+                // fetch.defaults.headers['Authorization'] = `Bearer ${token}`;
 
-                // Example: setting token in Authorization header for future requests
-                // You can use localStorage, sessionStorage, or in-memory storage based on your use case
-                localStorage.setItem('authToken', token); // Save token to localStorage
+                getUserData(userF.uid)
 
-                // Example: setting token in the Authorization header for all future requests
-                // You can set the Authorization header globally for your fetch requests
-                // For example, using a custom function or a library like axios:
-                fetch.defaults.headers['Authorization'] = `Bearer ${token}`;
             } else {
                 console.error("Failed to generate token");
             }
@@ -68,12 +66,7 @@ const Login = () => {
             console.error("Error generating token:", error);
           });
 
-          // save token in Authorization tab
-
-          // access the cookies through authorization
-
-
-          // navigate('/home')
+          navigate('/home')
         }).catch( (err) => {
           console.error(err)
         })
