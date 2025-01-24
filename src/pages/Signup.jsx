@@ -105,8 +105,8 @@ const Signup = () => {
                 Username
               </label>
               <input
-                type="email"
-                name="email"
+                type="text"
+                name="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"

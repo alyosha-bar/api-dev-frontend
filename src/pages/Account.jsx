@@ -61,7 +61,7 @@ const Account = () => {
                 <div className="w-full mb-6">
                     <h2 className="text-gray-800 text-xl md:text-2xl font-bold mb-4">Profile Details:</h2>
                     <div className="flex flex-col sm:flex-row sm:justify-between text-gray-700 mb-2">
-                        <p>Username: <span className="font-semibold"> Username </span></p>
+                        <p>Username: <span className="font-semibold"> {user.username} </span></p>
                         <p>Email: <span className="font-semibold">{user.email}</span></p>
                     </div>
                     <div className="flex flex-col sm:flex-row sm:justify-between text-gray-700 mt-2">
