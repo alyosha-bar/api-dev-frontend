@@ -1,4 +1,4 @@
-export const insertUser = (uid) => {
+export const insertUser = (user, firstname, lastname, username) => {
     // fetch request
     
     const authToken = localStorage.getItem('authToken')
@@ -6,6 +6,8 @@ export const insertUser = (uid) => {
         console.log('You need to log in first');
         return;
     }
+
+
 
 
     fetch(`${import.meta.env.VITE_SERVER_URL}/signup`, {
@@ -16,10 +18,11 @@ export const insertUser = (uid) => {
             'Authorization': `Bearer ${authToken}`
           },
         body: JSON.stringify({
-          "uid": uid,
-          "email": email,
+          "uid": user.uid,
+          "email": user.email,
           "firstname": firstname,
-          "lastname": lastname
+          "lastname": lastname,
+          "username": username
         })
     })
     .then( (res) => {

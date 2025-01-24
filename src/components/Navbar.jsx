@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext";
+import { useAuthStore } from "../stores/authStore";
 
 const Navbar = () => {
 
@@ -15,7 +15,8 @@ const Navbar = () => {
         navigate('/login')
     }
 
-    const {user, putUser, logout} = useContext(UserContext);
+    const logout = useAuthStore((state) => state.logUserOut)
+    const user = useAuthStore((state) => state.user)
 
     return ( 
         <nav className='bg-blue-300 py-6 px-6'>

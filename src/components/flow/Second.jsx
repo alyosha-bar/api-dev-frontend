@@ -1,12 +1,11 @@
-import { useContext, useState } from "react"
-import {UserContext} from '../../contexts/UserContext'
+import { useState } from "react"
 
 const Second = () => {
 
     const [userToken, setUserToken] = useState('')
     const [apiToken, setApiToken] = useState('')
 
-    const {user} = useContext(UserContext)
+    const user = useAuthStore((state) => state.user)
 
 
     const generateApiToken = () => {

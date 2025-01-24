@@ -2,11 +2,11 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../auth/firebase";
 import {createUserWithEmailAndPassword} from 'firebase/auth'
-import { UserContext } from "../contexts/UserContext";
 import { insertUser, validateCredentials } from "../auth/authFunctions";
 
 const Signup = () => {
 
+    const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [confirmEmail, setConfirmEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -17,9 +17,6 @@ const Signup = () => {
     const [error, setError] = useState('')
 
     const navigate = useNavigate()
-    
-    const {user, putUser} = useContext(UserContext)
-
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -43,29 +40,30 @@ const Signup = () => {
         .then( (userCredential) => {
           //signed up
           const userF = userCredential.user
-          putUser(userF)
-          return userF
-        }).then( (userF) => {
+          
+          console.log("User created in Firebase.")
 
-          // generate token
+          // replace / remove
+          // putUser(userF)
+          // make request to server to generate token.
           fetch(`${import.meta.env.VITE_SERVER_URL}/generate-token`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
+            credentials: "include", // Include cookies (if any) in the request
             body: JSON.stringify({
                 uid: userF.uid,
             })
           })
           .then(response => response.json())
           .then(data => {
+            console.log("response received from the server.")
             if (data.token) {
+                console.log(data.token)
                 // Save the token in the Authorization header for future requests
-                const token = data.token;
+                const token = data.token; 
                 localStorage.setItem('authToken', token);
-
-                // insert user into database
-                insertUser(userF.uid)
             } else {
                 console.error("Failed to generate token");
             }
@@ -73,12 +71,23 @@ const Signup = () => {
           .catch(error => {
             console.error("Error generating token:", error);
           });
+
+
+          // return firebase user
+          return userF
+        }).then( (userF) => {
+          
+          console.log("inserting user")
+          
+          // insert user into database
+          insertUser(userF, firstname, lastname, username)
+        
         }).catch( (err) => {
           console.error(err)
         })
 
-        // navigate to home
-        navigate('/')
+        // navigate to Login --> where authToken and local storage will be managed
+        navigate('/login')
         
         
     }
@@ -89,7 +98,21 @@ const Signup = () => {
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <h1 className="text-2xl font-bold text-center text-gray-700 mb-6">Signup Page</h1>
-  
+            
+            {/* Username Input */}
+            <div className="label-group">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-600">
+                Username
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter your username"
+              />
+            </div>
             {/* Email Input */}
             <div className="label-group">
               <label htmlFor="email" className="block text-sm font-medium text-gray-600">
