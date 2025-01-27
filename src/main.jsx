@@ -2,11 +2,12 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, useNavigate } from 'react-router-dom'
 import { initialiseAuth } from './auth/authFunctions.js'
 
 
-initialiseAuth()
+// initialiseAuth()
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode> 

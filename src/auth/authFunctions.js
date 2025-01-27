@@ -42,41 +42,55 @@ export const insertUser = (user, firstname, lastname, username) => {
   })
 }
 
-export const initialiseAuth = () => {
+
+export const initialiseAuth = (navigate, exemptPaths) => {
   console.log("Initialising Auth ... ")
+
+
+  // Get the current path from the browser
+  const currentPath = window.location.pathname;
+
+  // Check if the current path is exempt
+  if (exemptPaths.includes(currentPath)) {
+    console.log(`Path "${currentPath}" is exempt from authentication.`);
+    return true;
+  }
+
 
   // check if token exists
   const authtoken = localStorage.getItem('authToken');
   if (!authtoken) {
-    console.log("Token doesn't exist.")
-    throw new Error("No token. Redirect to login.")
+    console.log("Token doesn't exist.");
+    navigate("/login");
+    return false;
   }
 
-  // decode token 
+  // decode token
   const decodedToken = jwtDecode(authtoken);
   const isTokenValid = decodedToken.exp * 1000 > Date.now();
 
   // check if token is valid
   if (!isTokenValid) {
-    // remove token
-    console.log("Token isn't valid.")
-    localStorage.removeItem('authToken')
-    throw new Error("Token expired. Redirect to login.")
+    console.log("Token isn't valid.");
+    localStorage.removeItem('authToken');
+    navigate("/login");
+    return false;
   }
-  
-  // refresh token
-  console.log("Token is valid.")
+
+  console.log("Token is valid.");
   const user = JSON.parse(localStorage.getItem('user'));
 
   if (!user) {
-    console.log("no user for some reason.")
+    console.log("No user for some reason.");
+    navigate("/login");
+    return false;
   }
 
+  useAuthStore.setState({ user: user });
 
-  useAuthStore.setState({user: user})
-
-  console.log("Auth Initialised.")
-}
+  console.log("Auth Initialised.");
+  return true;
+};
 
 
 export const validateCredentials = (email, confirmEmail, password, confirmPassword) => {

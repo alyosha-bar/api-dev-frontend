@@ -1,6 +1,6 @@
 import './App.css'
 
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, useNavigate} from 'react-router-dom'
 import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
 import Signup from './pages/Signup'
@@ -13,9 +13,18 @@ import Footer from './components/homepage/Footer'
 import SidebarLayout from './layouts/Sidebarlayout'
 import Tokenmanagement from './components/Dashboard/Tokenmanagement'
 import Apisettings from './components/Dashboard/Apisettings'
+import { initialiseAuth } from './auth/authFunctions'
+import { useEffect } from 'react'
 
 
 function App() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Call initialiseAuth when the app loads
+    const exemptPaths = ["/login", "/signup", "/"];
+    initialiseAuth(navigate, exemptPaths);
+  }, [navigate]);
 
   return (
     <>  
