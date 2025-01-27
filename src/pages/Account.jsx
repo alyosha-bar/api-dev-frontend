@@ -55,7 +55,7 @@ const Account = () => {
     return ( 
         <div className="flex justify-center my-10 mb-32">
         <div className="flex flex-col justify-center items-center w-full max-w-lg border border-gray-300 rounded-lg shadow-md p-4 md:p-6 bg-white">
-            
+
             {/* Basic Information Section */}
             {user && (
                 <div className="w-full mb-6">

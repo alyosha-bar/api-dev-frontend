@@ -56,6 +56,8 @@ const Login = () => {
 
                 // fetch.defaults.headers['Authorization'] = `Bearer ${token}`;
 
+
+                // fetch account data from the server
                 getUserData(userF.uid)
 
             } else {

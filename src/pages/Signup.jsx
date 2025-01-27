@@ -18,6 +18,15 @@ const Signup = () => {
 
     const navigate = useNavigate()
 
+    // validate credentials 
+
+    // generate auth token
+
+    // generate user token
+
+    // signup user
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -71,7 +80,13 @@ const Signup = () => {
           .catch(error => {
             console.error("Error generating token:", error);
           });
-
+          
+          const authToken = localStorage.getItem('authToken')
+          if (!authToken) {
+              console.log('You need to log in first');
+              return;
+          }
+          
 
           // return firebase user
           return userF
