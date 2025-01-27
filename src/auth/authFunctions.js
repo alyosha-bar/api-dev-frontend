@@ -49,7 +49,7 @@ export const initialiseAuth = () => {
   const authtoken = localStorage.getItem('authToken');
   if (!authtoken) {
     console.log("Token doesn't exist.")
-    // throw new Error("No token. Redirect to login.")
+    throw new Error("No token. Redirect to login.")
   }
 
   // decode token 
@@ -60,8 +60,8 @@ export const initialiseAuth = () => {
   if (!isTokenValid) {
     // remove token
     console.log("Token isn't valid.")
-    // localStorage.removeItem('authToken')
-    // throw new Error("Token expired. Redirect to login.")
+    localStorage.removeItem('authToken')
+    throw new Error("Token expired. Redirect to login.")
   }
   
   // refresh token
