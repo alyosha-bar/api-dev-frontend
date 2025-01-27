@@ -85,7 +85,7 @@ const Account = () => {
                         Show Token
                     </button>
                     <div className="flex items-center w-full sm:w-auto">
-                        <p className="text-white bg-black px-4 py-2 rounded-l break-all w-full sm:w-48">{user.token}</p>
+                        {user && <p className="text-white bg-black px-4 py-2 rounded-l break-all w-full sm:w-48">{user.token}</p>}
                         <button 
                             onClick={() => copyToken(user.token)} 
                             className="bg-blue-500 text-white px-4 py-2 rounded-r hover:bg-blue-600"
