@@ -43,54 +43,62 @@ export const insertUser = (user, firstname, lastname, username) => {
 }
 
 
-export const initialiseAuth = (navigate, exemptPaths) => {
-  console.log("Initialising Auth ... ")
+export const initialiseAuth = (navigate, exemptPaths = []) => {
+  console.log("Initialising Auth ... ");
 
-
-  // Get the current path from the browser
+  // Get the current path
   const currentPath = window.location.pathname;
 
-  // Check if the current path is exempt
-  if (exemptPaths.includes(currentPath)) {
-    console.log(`Path "${currentPath}" is exempt from authentication.`);
-    return true;
-  }
-
-
-  // check if token exists
-  const authtoken = localStorage.getItem('authToken');
+  // Check if token exists
+  const authtoken = localStorage.getItem("authToken");
   if (!authtoken) {
     console.log("Token doesn't exist.");
-    navigate("/login");
+    // Remove user from state
+    useAuthStore.setState({ user: null });
+
+    // Only redirect if the path is NOT exempt
+    if (!exemptPaths.includes(currentPath)) {
+      navigate("/login");
+    }
     return false;
   }
 
-  // decode token
+  // Decode token
   const decodedToken = jwtDecode(authtoken);
   const isTokenValid = decodedToken.exp * 1000 > Date.now();
 
-  // check if token is valid
+  // If token is invalid, clear localStorage and redirect if needed
   if (!isTokenValid) {
     console.log("Token isn't valid.");
-    localStorage.removeItem('authToken');
-    navigate("/login");
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("user");
+    useAuthStore.setState({ user: null });
+
+    if (!exemptPaths.includes(currentPath)) {
+      navigate("/login");
+    }
     return false;
   }
 
+  // Token is valid, set the user in the store
   console.log("Token is valid.");
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem("user"));
 
   if (!user) {
-    console.log("No user for some reason.");
-    navigate("/login");
+    console.log("No user data found in localStorage.");
+    if (!exemptPaths.includes(currentPath)) {
+      navigate("/login");
+    }
     return false;
   }
 
+  // Set user in the Zustand store
   useAuthStore.setState({ user: user });
 
   console.log("Auth Initialised.");
   return true;
 };
+
 
 
 export const validateCredentials = (email, confirmEmail, password, confirmPassword) => {
