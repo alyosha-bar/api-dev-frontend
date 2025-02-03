@@ -7,7 +7,7 @@ const First = () => {
     const [apiName, setAPIName] = useState('')
     const [limit, setLimit] = useState()
     const [description, setDescription] = useState('')
-    const [apiToken, setApiToken] = useState('yoasyodaowda')
+    const [apiToken, setApiToken] = useState('')
 
     const user = useAuthStore((state) => state.user)
 
