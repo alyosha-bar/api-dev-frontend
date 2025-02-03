@@ -7,7 +7,7 @@ const First = () => {
     const [apiName, setAPIName] = useState('')
     const [limit, setLimit] = useState()
     const [description, setDescription] = useState('')
-    const [apiToken, setApiToken] = useState('')
+    const [apiToken, setApiToken] = useState('yoasyodaowda')
 
     const user = useAuthStore((state) => state.user)
 
@@ -50,7 +50,7 @@ const First = () => {
     }
 
     return ( 
-        <div className="flex">
+        <div className="flex flex-col">
             <div className="text-sm overflow-auto h-4/5 flex flex-col justify-center items-center">
                 <h2 className="text-xl font-bold text-black"> Welcome! </h2>
                     <h2 className="text-black p-2 text-lg"> Step 1 </h2>
@@ -90,21 +90,17 @@ const First = () => {
                         />
                     </div>
                     <button className="text-black bg-blue-200 p-4 m-4 rounded-md" type="submit"> Register API </button>
+                    {apiToken && (
+                        <div className="flex items-center p-4 space-x-2">
+                            <p className="font-semibold">API Token:</p>
+                            <p className="text-white bg-black px-4 py-2 break-all rounded" name="token">
+                            {apiToken}
+                            </p>
+                            <button className="text-black bg-blue-200 p-4" onClick={() => {copyToken(apiToken)}}> Copy </button>
+                        </div>
+                        )}
                 </form>
             </div>
-            {apiToken && <div className="flex flex-col justify-between items-center w-4/5 p-4 bg-blue-400 rounded-lg">
-                <label htmlFor="token" className=""> API Token: </label> 
-                <p className="text-white bg-black p-4 w-4/6 text-wrap break-all" name="token"> { apiToken }</p>
-                <button className="text-black bg-blue-200 p-4" onClick={() => {copyToken(apiToken)}}> Copy </button>
-
-                <div>
-                    <p className="text-black text-lg p-2"> Save the user token and the api token in your application's ENV variables</p>
-                    <div className="flex justify-center items-center my-6">
-                        <p className="text-red-700 w-3/5 flex justify-center items-center border border-solid border-red-700 p-2 rounded-md bg-gray-100"> KEEP THE TOKEN SECRET. IF IT IS REVEALED REGENERATE: <br /> (1) THE API TOKEN IN YOUR API DASHBOARD.</p>
-                    </div>
-                </div>
-
-            </div> }
         </div>
     );
 }
