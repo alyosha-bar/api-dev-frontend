@@ -8,8 +8,7 @@ function SidebarLayout() {
   return (
     <div className="layout flex">
       <Sidebar />
-      <div className="content">
-        {/* Nested route components will render here */}
+      <div className="content flex justify-center items-center w-full">
         <Outlet />
       </div>
     </div>

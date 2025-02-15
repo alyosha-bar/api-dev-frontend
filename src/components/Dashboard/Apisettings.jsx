@@ -1,13 +1,15 @@
+import { useParams } from "react-router-dom";
+import Tokenmanagement from "./Tokenmanagement";
 
 
 const Apisettings = () => {
+
+    const { apiId } = useParams()
+
     return ( 
         <>
-            <div>
-                <h1 className="p-5">API Settings!</h1>
-                <ul className="p-5">
-                    <li> - Alter the limit of requests </li>
-                </ul>
+            <div className="flex justify-center items-center">
+                <Tokenmanagement apiId={apiId}/>
             </div>
         </>
     );

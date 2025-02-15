@@ -37,7 +37,7 @@ function App() {
         <Route path='/dashboard' element={<SidebarLayout />}>
           <Route path=':id' element={<Dashboard/>}></Route>
           <Route path='token/:id' element={<Tokenmanagement />}></Route>
-          <Route path='settings/:id' element={<Apisettings />}></Route>
+          <Route path='settings/:apiId' element={<Apisettings />}></Route>
         </Route>
         <Route path='/account/:id' element={<Account />} />
 

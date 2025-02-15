@@ -33,7 +33,6 @@ const Sidebar = () => {
         <nav className="flex-grow p-4">
           <ul>
             <li className="my-2 p-2 hover:bg-gray-200 rounded text-sm"><Link to={`${params.id}`} className="my-2 p-2 hover:bg-gray-200 rounded text-sm">{isMinimized ? '🏠' : 'Usage Dashboard'}</Link></li>
-            <li className="my-2 p-2 hover:bg-gray-200 rounded text-sm"><Link to={`token/${params.id}`} className="my-2 p-2 hover:bg-gray-200 rounded text-sm">{isMinimized ? '🏠' : 'Token Management'}</Link></li>
             <li className="my-2 p-2 hover:bg-gray-200 rounded text-sm"><Link to={`settings/${params.id}`} className="my-2 p-2 hover:bg-gray-200 rounded text-sm">{isMinimized ? '🏠' : 'API settings'}</Link></li>
           </ul>
         </nav>

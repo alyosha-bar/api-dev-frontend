@@ -8,7 +8,9 @@ To Do List:
 - [ ] Implement API settings from Dashboard
 - [ ] Finish Account page with password regeneration and account deletion
 - [x] Make logged in status persistent over a reload
-- [ ] add a _redirects file to fix reloading issue
+- [x] add a _redirects file to fix reloading issue
+- [ ] OAuth Providers
+- [ ] Change "technologies supported" text into logos
 
 Big Picture:
 - [x] Implement Zustand
