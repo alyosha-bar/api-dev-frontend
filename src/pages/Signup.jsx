@@ -81,11 +81,11 @@ const Signup = () => {
             console.error("Error generating token:", error);
           });
           
-          const authToken = localStorage.getItem('authToken')
-          if (!authToken) {
-              console.log('You need to log in first');
-              return;
-          }
+          // const authToken = localStorage.getItem('authToken')
+          // if (!authToken) {
+          //     console.log('You need to log in first');
+          //     return;
+          // }
           
 
           // return firebase user
