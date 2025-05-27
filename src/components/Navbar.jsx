@@ -22,8 +22,12 @@ const Navbar = () => {
         <nav className='bg-blue-300 py-6 px-6'>
         <div className='container mx-auto flex justify-between items-center'>
           {/* Logo */}
-          <h2 className='text-2xl font-bold text-gray-800'> <Link to='/'> API-Track </Link></h2>
-  
+          <div class="flex items-center space-x-2">
+            <img src="/logo.png" alt="API-Track Logo" className="h-8 w-8" />
+            <h2 class="text-2xl font-bold text-gray-800">
+              <Link to="/">API-Track</Link>
+            </h2>
+          </div>
           {/* Navigation Links */}
           <div className='space-x-6 flex items-center'>
             {user ? (
