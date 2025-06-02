@@ -4,6 +4,7 @@ import SimplePieChart from "../components/charts/SimplePieChart";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
+import SimpleBarChart from "../components/charts/SimpleBarChart";
 
 
 
@@ -56,7 +57,7 @@ const Dashboard = () => {
             setTotalReq(latestEntry.total_req)
             setAvgLatency(latestEntry.avg_latency)
             setLatestMonth(month)
-            setErrorRate((latestEntry.errorcount / latestEntry.total_req) * 100)
+            setErrorRate((latestEntry.errorcount / latestEntry.total_req) * 100)  
         })
     }, [])
 
@@ -95,32 +96,81 @@ const Dashboard = () => {
 
 
     return ( 
-        <div className="bg-white h-screen overflow-hidden flex justify-between flex-row px-10">
-            <div className="dashboard flex flex-col w-4/5 p-10">
-                <div className="flex justify-around w-5/5">
-                    {totalreq && <div className="border rounded-sm border-solid border-green-600 w-1/4 flex flex-col justify-center p-4">
-                        <h5 className="text-green-600 text-sm"> Total Requests: </h5>
-                        <h3 className="text-green-600 text-3xl p-2 self-center"> {totalreq.toLocaleString()} <div className="text-green-600 text-xs">requests in {latestMonth} </div> </h3>
-                    </div>}
-                    {errorRate && <div className="border rounded-sm border-solid border-red-600 w-1/4 flex flex-col justify-center p-4">
-                    <h5 className="text-red-600 text-sm"> Error Rate: </h5>
-                        <h3 className="text-red-600 text-3xl p-2 self-center"> {errorRate.toFixed(2)}% <div className="text-red-600 text-xs"> in {latestMonth} </div> </h3>
-                    </div>}
-                    <div className="border rounded-sm border-solid border-gray-200 w-1/5 flex flex-col justify-center p-4">
-                        <h5 className="text-black text-sm"> Avg Latency: </h5>
-                        <h3 className="text-black text-3xl p-2 self-center"> {avgLatency} ms <div className="text-xs"> per request in {latestMonth} </div> </h3>
-                    </div>
+        <div className="bg-white h-screen overflow-hidden flex flex-row px-10">
+        {/* Main Dashboard Area */}
+        <div className="dashboard flex flex-col w-full p-10 gap-6">
+            
+            {/* Metrics Summary Section */}
+            <div className="w-full border rounded-md border-gray-300 p-4 flex justify-around divide-x divide-gray-300 bg-white">
+                {/* Total Requests */}
+                <div className="flex-1 px-4 flex flex-col justify-center">
+                    {totalreq && (
+                    <>
+                        <h5 className="text-green-600 text-sm">Total Requests:</h5>
+                        <h3 className="text-green-600 text-3xl p-2 self-center">
+                        {totalreq.toLocaleString()}
+                        <div className="text-green-600 text-xs">requests in {latestMonth}</div>
+                        </h3>
+                    </>
+                    )}
                 </div>
-                <div className="flex p-4 w-full justify-center items-center">
-                    <div className="text-black h-full p-10">
-                        <Linechart totalreq={totalreq} data={lineData}/>
+
+                {/* Error Rate */}
+                <div className="flex-1 px-4 flex flex-col justify-center">
+                    {errorRate !== null && errorRate !== undefined && !isNaN(errorRate) && (
+                    <>
+                        <h5 className="text-red-600 text-sm">Error Rate:</h5>
+                        <h3 className="text-red-600 text-3xl p-2 self-center">
+                        {errorRate.toFixed(2)}%
+                        <div className="text-red-600 text-xs">in {latestMonth}</div>
+                        </h3>
+                    </>
+                    )}
+                </div>
+
+                {/* Avg Latency */}
+                <div className="flex-1 px-4 flex flex-col justify-center">
+                    <h5 className="text-black text-sm">Avg Latency:</h5>
+                    <h3 className="text-black text-3xl p-2 self-center">
+                    {avgLatency} ms
+                    <div className="text-xs">per request in {latestMonth}</div>
+                    </h3>
+                </div>
+                
+                {/* Avg Latency */}
+                <div className="flex-1 px-4 flex flex-col justify-center">
+                    <h5 className="text-black text-sm">Avg Latency:</h5>
+                    <h3 className="text-black text-3xl p-2 self-center">
+                    {avgLatency} ms
+                    <div className="text-xs">per request in {latestMonth}</div>
+                    </h3>
+                </div>
+            </div>
+
+            {/* Main Content Area */}
+            <div className="flex flex-row gap-6 w-full h-full">
+                {/* Line Chart - Main Content */}
+                <div className="flex-1 border rounded-md border-gray-200 bg-white p-6 shadow-sm">
+                    <h1> Request Tracking </h1>
+                    <Linechart totalreq={totalreq} data={lineData} />
+                </div>
+
+                {/* Sidebar with Pie and Bar Charts */}
+                <div className="w-1/3 flex flex-col gap-6">
+                    {/* Bar Chart */}
+                    <div className="border rounded-md border-gray-200 bg-white p-6 shadow-sm">
+                        <SimpleBarChart />
                     </div>
-                    <div className="text-black h-full p-10">
+                    
+                    {/* Pie Chart */}
+                    <div className="border rounded-md border-gray-200 bg-white p-6 shadow-sm">
                         <SimplePieChart />
                     </div>
                 </div>
+                </div>
             </div>
         </div>
+
      );
 }
  
